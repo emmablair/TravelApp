@@ -16,7 +16,7 @@ const app = express();
 // use json
 app.use(bodyParser.json());
 // use urlencoded values
-app.use(bodyParser.ureEncoded({
+app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cors());
@@ -31,3 +31,20 @@ app.get('/', (req, res) => {
 app.listen(8081, () => {
     console.log('Hello! Travel App is listening from port 8081!');
 });
+
+app.post('/geoname', async(req, res) => {
+    let baseURL = `http://api.geonames.org/searchJSON?q=`;
+    let key = process.env.GEO_KEY;
+    let urlSettings = '&maxRows=1&lang=en';
+    // req user input from client side
+    let userInput = req.body.userInput;
+    console.log(userInput);
+
+    let getAPI = `${baseURL}${userInput}${urlSettings}${key}`;
+    console.log(getAPI);
+    let projectData = await fetch(getAPI);
+    console.log(projectData)
+    .then(projectData => projectData.json())
+    .then(data => res.send(data))
+    .catch(error => console.log(':::ERROR server side /geoname:::', error));
+})
