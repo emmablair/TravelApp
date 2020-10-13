@@ -37,14 +37,30 @@ app.post('/geoname', async(req, res) => {
     let key = process.env.GEO_KEY;
     let urlSettings = '&maxRows=1&lang=en';
     // req user input from client side
-    let userInput = req.body.userInput;
+    let userInput = req.body.input;
     console.log(userInput);
 
     let getAPI = `${baseURL}${userInput}${urlSettings}${key}`;
     console.log(getAPI);
-    let projectData = await fetch(getAPI);
-    console.log(projectData)
-    .then(projectData => projectData.json())
-    .then(data => res.send(data))
-    .catch(error => console.log(':::ERROR server side /geoname:::', error));
+    let data = await fetch(getAPI)
+    // console.log(projectData)
+    .then((data) => {data.json();
+        return data})
+    // console.log(data)
+    // .then((data) => res.send(data))
+    .then((data) => newEntry = {
+        lat: data.geonames[0].lat,
+        lng: data.geonames[0].lng,
+    })
+    // console.log(newEntry)
+    .then((data) => res.send(data))
+    .catch((error) => console.log(':::ERROR server side /geoname:::', error));
+    // let newEntry = {
+    //     lat: req.body.lat,
+    //     lng: req.body.lng
+    // }
+    // console.log(newEntry)
+    
 })
+
+console.log(data)
