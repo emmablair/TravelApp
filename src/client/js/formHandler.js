@@ -3,7 +3,7 @@ const formHandler = async(e) => {
     const userInput = document.querySelector('#userInput').value;
     console.log('::: FORM SUBMITTED | GEONAMES :::')
     // API call
-    const response = await fetch('/geoname',  {
+    const geoname = await fetch('/geoname',  {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
@@ -19,6 +19,6 @@ const formHandler = async(e) => {
     .catch((error) => {
         console.log('HANDLE SUBMIT promise error', error);
     });
-    console.log(response.lat);
+    console.log(geoname.lat);
     console.log('done')
 }
