@@ -44,8 +44,7 @@ app.post('/geoname', async(req, res) => {
     console.log(getAPI);
     let data = await fetch(getAPI)
     // console.log(projectData)
-    .then((data) => {data.json();
-        return data})
+    .then((data) => data.json())
     // console.log(data)
     // .then((data) => res.send(data))
     .then((data) => newEntry = {
@@ -63,4 +62,3 @@ app.post('/geoname', async(req, res) => {
     
 })
 
-console.log(data)
