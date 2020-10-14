@@ -47,3 +47,12 @@ const formHandler = async(e) => {
     console.log('::: FORM SUBMITTED | WEATHERBIT :::')
 }
 
+// Current date in date input field
+Date.prototype.toDateInputValue = (function() {
+    // allow correct timezone
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+// apply current date
+document.querySelector('#dateInput').value = new Date().toDateInputValue(); //.valueAsDate without timezone also works
