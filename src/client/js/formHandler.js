@@ -2,7 +2,7 @@ const formHandler = async(e) => {
     e.preventDefault();
     const userInput = document.querySelector('#userInput').value;
     console.log('::: FORM SUBMITTED | GEONAMES :::')
-    // API call
+    // ::: GEONAMES :::
     const geoname = await fetch('/geoname',  {
         method: 'POST',
         credentials: 'same-origin',
@@ -17,8 +17,33 @@ const formHandler = async(e) => {
         return postData;
     })
     .catch((error) => {
-        console.log('HANDLE SUBMIT promise error', error);
+        console.log('GEONAMES promise error', error);
     });
-    console.log(geoname.lat);
+    console.log(geoname);
     console.log('done')
+
+    const dateInput = document.querySelector('#dateInput').value;
+    console.log(dateInput);
+    // ::: WEATHERBIT :::
+    const weatherbit = await fetch('/weatherbit',  {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            lat: geoname.lat,
+            lng: geoname.lng 
+        })
+    })
+    .then(res => {
+        const sendData = res.json();
+        return sendData;
+    })
+    .catch((error) => {
+        console.log('WEATHERBIT promise error', error);
+    });
+    console.log('::: FORM SUBMITTED | WEATHERBIT :::')
 }
+
