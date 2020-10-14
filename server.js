@@ -35,30 +35,34 @@ app.listen(8081, () => {
 app.post('/geoname', async(req, res) => {
     let baseURL = `http://api.geonames.org/searchJSON?q=`;
     let key = process.env.GEO_KEY;
-    let urlSettings = '&maxRows=1&lang=en';
+    let urlSettings = `&maxRows=1&lang=en`;
     // req user input from client side
     let userInput = req.body.input;
     console.log(userInput);
 
-    let getAPI = `${baseURL}${userInput}${urlSettings}${key}`;
-    console.log(getAPI);
-    let data = await fetch(getAPI)
-    // console.log(projectData)
+    let apiURL = `${baseURL}${userInput}${urlSettings}${key}`;
+    console.log(apiURL);
+    let data = await fetch(apiURL)
     .then((data) => data.json())
-    // console.log(data)
-    // .then((data) => res.send(data))
     .then((data) => newEntry = {
         lat: data.geonames[0].lat,
         lng: data.geonames[0].lng,
     })
-    // console.log(newEntry)
     .then((data) => res.send(data))
     .catch((error) => console.log(':::ERROR server side /geoname:::', error));
-    // let newEntry = {
-    //     lat: req.body.lat,
-    //     lng: req.body.lng
-    // }
-    // console.log(newEntry)
+})
+
+app.post('/weatherbit', async(req, res) => {
+    let baseURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
+    let key = process.env.WEATHER_KEY;
+    let urlSettings = `&lang=en&units=I&days=16`;
+    // lat & lng from GEONAMES api
+    let lat = req.body.lat;
+    let lng = req.body.lng;
+    console.log(lat);
+    console.log(lng);
     
+    let apiURL =`${baseURL}${key}&lat=${lat}&lon=${lng}${urlSettings}`;
+    console.log(apiURL)
 })
 
