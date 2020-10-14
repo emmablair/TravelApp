@@ -63,6 +63,10 @@ app.post('/weatherbit', async(req, res) => {
     console.log(lng);
     
     let apiURL =`${baseURL}${key}&lat=${lat}&lon=${lng}${urlSettings}`;
-    console.log(apiURL)
+    console.log(apiURL);
+    let data = await fetch(apiURL)
+    .then((data) => data.json())
+    .then((data) => res.send(data))
+    .catch((error) => console.log(':::ERROR server side /geoname:::', error));
 })
 
