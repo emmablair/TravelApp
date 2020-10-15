@@ -74,6 +74,7 @@ app.post('/arriveGeoname', async(req, res) => {
     .then((data) => newEntry = {
         latA: data.geonames[0].lat,
         lngA: data.geonames[0].lng,
+        specifyPlace: data.geonames[0].adminName1
     })
     .then((data) => res.send(data))
     .catch((error) => console.log(':::ERROR server side /geoname:::', error));
@@ -124,10 +125,11 @@ app.post('/pixabay', async(req, res) => {
     let urlSettings = `&lang=en&per_page=3&image_type=photo`;
     // lat & lng from GEONAMES api
     let arriveInput = req.body.arrive;
-    console.log(latA);
-    console.log(lngA);
+    let placeDefine = req.body.place;
+    console.log(`PICTURE OF: ${arriveInput}`);
+    console.log(`DEFINE PLACE: ${placeDefine}`);
     
-    let apiURL =`${baseURL}${key}&q=${arriveInput}${urlSettings}`;
+    let apiURL =`${baseURL}${key}&q=${arriveInput}+${placeDefine}${urlSettings}`;
     console.log(apiURL);
     let data = await fetch(apiURL)
     .then((data) => data.json())
