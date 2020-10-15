@@ -67,8 +67,9 @@ const formHandler = async(e) => {
         console.log('GEONAMES promise error', error);
     });
     console.log(arriveGeo);
-    console.log('done2')
-    getWeather(departGeo, arriveGeo)
+    console.log('done2');
+    getWeather(departGeo, arriveGeo);
+    getPic(arriveInput,arriveGeo);
 }
 
 const getWeather = async(departGeo, arriveGeo) => {
@@ -101,7 +102,7 @@ const getWeather = async(departGeo, arriveGeo) => {
         return sendData;
     })
     .catch((error) => {
-        console.log('WEATHERBIT promise error', error);
+        console.log('WEATHERBIT DEPART | promise error', error);
     });
     console.log('::: FORM SUBMITTED | DEPART WEATHERBIT :::');
     console.log(departWeather.data);
@@ -126,10 +127,36 @@ const getWeather = async(departGeo, arriveGeo) => {
         return sendData;
     })
     .catch((error) => {
-        console.log('WEATHERBIT promise error', error);
+        console.log('WEATHERBIT ARRIVE | promise error', error);
     });
     console.log('::: FORM SUBMITTED | ARRIVE WEATHERBIT :::');
     console.log(arriveWeather.data);
     console.log(arriveWeather.data[arriveForcast]);
     document.querySelector('#arriveIcon').src = `https://www.weatherbit.io/static/img/icons/${arriveWeather.data[arriveForcast].weather.icon}.png`;
+}
+
+const getPic = async(arriveInput, arriveGeo) => {
+    /* PIXABAY DYNAMIC IMAGE for ARRIVAL DESTINATION */
+    const pixabay = await fetch('/pixabay',  {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            place: arriveGeo.specifyPlace,
+            arrive: arriveInput
+        })
+    })
+    .then(res => {
+        const sendData = res.json();
+        return sendData;
+    })
+    .catch((error) => {
+        console.log('PIXABAY | promise error', error);
+    });
+    console.log('::: FORM SUBMITTED | PIXABAY ARRIVE :::');
+    console.log(pixabay)
+    document.querySelector('#pixabay').src = pixabay.hits[0].largeImageURL
 }
