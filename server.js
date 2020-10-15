@@ -32,41 +32,87 @@ app.listen(8081, () => {
     console.log('Hello! Travel App is listening from port 8081!');
 });
 
-app.post('/geoname', async(req, res) => {
+// ::: DEPART POST :::
+app.post('/departGeoname', async(req, res) => {
     let baseURL = `http://api.geonames.org/searchJSON?q=`;
     let key = process.env.GEO_KEY;
     let urlSettings = `&maxRows=1&lang=en`;
     // req user input from client side
-    let userInput = req.body.input;
-    console.log(userInput);
+    let departInput = req.body.depart;
 
-    let apiURL = `${baseURL}${userInput}${urlSettings}${key}`;
-    console.log(apiURL);
-    let data = await fetch(apiURL)
+    console.log(`DEPART${departInput}`);
+
+
+    let departApiURL = `${baseURL}${departInput}${urlSettings}${key}`;
+
+    console.log(departApiURL);
+
+    let data = await fetch(departApiURL)
     .then((data) => data.json())
     .then((data) => newEntry = {
-        lat: data.geonames[0].lat,
-        lng: data.geonames[0].lng,
+        latD: data.geonames[0].lat,
+        lngD: data.geonames[0].lng,
     })
     .then((data) => res.send(data))
     .catch((error) => console.log(':::ERROR server side /geoname:::', error));
 })
 
-app.post('/weatherbit', async(req, res) => {
+// ::: ARRIVE POST :::
+app.post('/arriveGeoname', async(req, res) => {
+    let baseURL = `http://api.geonames.org/searchJSON?q=`;
+    let key = process.env.GEO_KEY;
+    let urlSettings = `&maxRows=1&lang=en`;
+    // req user input from client side
+    let arriveInput = req.body.arrive;
+    console.log(`ARRIVE${arriveInput}`);
+
+    let arriveApiURL = `${baseURL}${arriveInput}${urlSettings}${key}`;
+
+    console.log(arriveApiURL);
+    let data = await fetch(arriveApiURL)
+    .then((data) => data.json())
+    .then((data) => newEntry = {
+        latA: data.geonames[0].lat,
+        lngA: data.geonames[0].lng,
+    })
+    .then((data) => res.send(data))
+    .catch((error) => console.log(':::ERROR server side /geoname:::', error));
+})
+
+
+app.post('/departWeather', async(req, res) => {
     let baseURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
     let key = process.env.WEATHER_KEY;
     let urlSettings = `&lang=en&units=I&days=16`;
     // lat & lng from GEONAMES api
-    let lat = req.body.lat;
-    let lng = req.body.lng;
-    console.log(lat);
-    console.log(lng);
+    let latD = req.body.latD;
+    let lngD = req.body.lngD;
+    console.log(latD);
+    console.log(lngD);
     
-    let apiURL =`${baseURL}${key}&lat=${lat}&lon=${lng}${urlSettings}`;
+    let apiURL =`${baseURL}${key}&lat=${latD}&lon=${lngD}${urlSettings}`;
     console.log(apiURL);
     let data = await fetch(apiURL)
     .then((data) => data.json())
     .then((data) => res.send(data))
-    .catch((error) => console.log(':::ERROR server side /geoname:::', error));
+    .catch((error) => console.log(':::ERROR server side /departWeather:::', error));
+})
+
+app.post('/arriveWeather', async(req, res) => {
+    let baseURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
+    let key = process.env.WEATHER_KEY;
+    let urlSettings = `&lang=en&units=I&days=16`;
+    // lat & lng from GEONAMES api
+    let latA = req.body.latA;
+    let lngA = req.body.lngA;
+    console.log(latA);
+    console.log(lngA);
+    
+    let apiURL =`${baseURL}${key}&lat=${latA}&lon=${lngA}${urlSettings}`;
+    console.log(apiURL);
+    let data = await fetch(apiURL)
+    .then((data) => data.json())
+    .then((data) => res.send(data))
+    .catch((error) => console.log(':::ERROR server side /arriveWeather:::', error));
 })
 

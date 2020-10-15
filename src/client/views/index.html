@@ -7,13 +7,18 @@
 
     <body> 
         <form onsubmit="return formHandler(event)">
-            <input id='userInput' type='text' value='' placeholder='City here'>
+            <input id='departInput' type='text' value='' placeholder='Leaving from'>
+            <input id='arriveInput' type='text' value='' placeholder='Arriving at'>
             <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)">
             <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
         </form>
         <form>
-            <input id='dateInput' type='date'>
+            <label for='Departing'>Departing</label>
+            <input id='departDate' name='Departing' type='date'>
+            <label for='Arriving'>Arriving</label>
+            <input id='arriveDate' name='Arriving' type='date'>
         </form>
-        <div id='weather'><img src='' id='weatherIcon'></div>
+        <div id='departWeather'><img src='' id='departIcon'></div>
+        <div id='arriveWeather'><img src='' id='arriveIcon'></div>
         <script src='../js/formhandler.js'></script>
     </body>

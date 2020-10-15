@@ -7,7 +7,8 @@ Date.prototype.toDateInputValue = (function() {
 });
 // apply current date
 const currentDate = new Date().toDateInputValue();
-document.querySelector('#dateInput').value = currentDate; //.valueAsDate without timezone also works
+document.querySelector('#departDate').value = currentDate; //.valueAsDate without timezone also works
+document.querySelector('#arriveDate').value = currentDate; //.valueAsDate without timezone also works
 
 //::: date diffence for weather Forcast :::
 const dateDifference = (date1, date2) => {
@@ -20,17 +21,21 @@ const dateDifference = (date1, date2) => {
 // ::: form Handler Func :::
 const formHandler = async(e) => {
     e.preventDefault();
-    const userInput = document.querySelector('#userInput').value;
+    const departInput = document.querySelector('#departInput').value;
+    const arriveInput = document.querySelector('#arriveInput').value;
     console.log('::: FORM SUBMITTED | GEONAMES :::')
-    // ::: GEONAMES :::
-    const geoname = await fetch('/geoname',  {
+    // ::: GEONAMES DEPART :::
+    const departGeo = await fetch('/departGeoname',  {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ input: userInput })
+        body: JSON.stringify({ 
+            depart: departInput,
+            arrive: arriveInput
+         })
     })
     .then(res => {
         const postData = res.json();
@@ -39,30 +44,56 @@ const formHandler = async(e) => {
     .catch((error) => {
         console.log('GEONAMES promise error', error);
     });
-    console.log(geoname);
+    console.log(departGeo);
     console.log('done')
-    getWeather(geoname)
-}
 
-const getWeather = async(geoname) => {
-    // ::: WEATHERBIT :::
-    const dateInput = document.querySelector('#dateInput').value;
-    console.log(`current date:${currentDate}`);
-    console.log(`destination date:${dateInput}`);
-    const forcastDay = dateDifference(currentDate, dateInput);
-    console.log(`destination day difference:${forcastDay}`);
-    
-    const weatherbit = await fetch('/weatherbit',  {
+    // ::: GEONAMES ARRIVE :::
+    const arriveGeo = await fetch('/arriveGeoname',  {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            day: forcastDay, 
-            lat: geoname.lat,
-            lng: geoname.lng 
+        body: JSON.stringify({ 
+            arrive: arriveInput
+         })
+    })
+    .then(res => {
+        const postData = res.json();
+        return postData;
+    })
+    .catch((error) => {
+        console.log('GEONAMES promise error', error);
+    });
+    console.log(arriveGeo);
+    console.log('done2')
+    getWeather(departGeo, arriveGeo)
+}
+
+const getWeather = async(departGeo, arriveGeo) => {
+    // ::: WEATHERBIT :::
+    const departInput = document.querySelector('#departDate').value;
+    const arriveInput = document.querySelector('#arriveDate').value;
+    console.log(`current date:${currentDate}`);
+    console.log(`Depart date:${departInput}`);
+    console.log(`Arrival date:${arriveInput}`);
+    const departForcast = dateDifference(currentDate, departInput);
+    const arriveForcast = dateDifference(currentDate, arriveInput);
+    console.log(`depart day difference:${departForcast}`);
+    console.log(`arrival day difference:${arriveForcast}`);
+    
+    // ::: DEPART WEATHER :::
+    const departWeather = await fetch('/departWeather',  {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+            latD: departGeo.latD,
+            lngD: departGeo.lngD
         })
     })
     .then(res => {
@@ -72,8 +103,33 @@ const getWeather = async(geoname) => {
     .catch((error) => {
         console.log('WEATHERBIT promise error', error);
     });
-    console.log('::: FORM SUBMITTED | WEATHERBIT :::');
-    console.log(weatherbit.data);
-    console.log(weatherbit.data[forcastDay]);
-    document.querySelector('#weatherIcon').src = `https://www.weatherbit.io/static/img/icons/${weatherbit.data[forcastDay].weather.icon}.png`;
+    console.log('::: FORM SUBMITTED | DEPART WEATHERBIT :::');
+    console.log(departWeather.data);
+    console.log(departWeather.data[departForcast]);
+    document.querySelector('#departIcon').src = `https://www.weatherbit.io/static/img/icons/${departWeather.data[departForcast].weather.icon}.png`;
+    
+    // ::: ARRIVE WEATHER :::
+    const arriveWeather = await fetch('/arriveWeather',  {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            latA: arriveGeo.latA,
+            lngA: arriveGeo.lngA
+        })
+    })
+    .then(res => {
+        const sendData = res.json();
+        return sendData;
+    })
+    .catch((error) => {
+        console.log('WEATHERBIT promise error', error);
+    });
+    console.log('::: FORM SUBMITTED | ARRIVE WEATHERBIT :::');
+    console.log(arriveWeather.data);
+    console.log(arriveWeather.data[arriveForcast]);
+    document.querySelector('#arriveIcon').src = `https://www.weatherbit.io/static/img/icons/${arriveWeather.data[arriveForcast].weather.icon}.png`;
 }
