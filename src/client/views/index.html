@@ -6,16 +6,17 @@
     </head>
 
     <body> 
+        <img id='pixabay' src=''>
         <form onsubmit="return formHandler(event)">
-            <input id='departInput' type='text' value='' placeholder='Leaving from'>
-            <input id='arriveInput' type='text' value='' placeholder='Arriving at'>
+            <input id='departInput' type='text' value='' placeholder='Departure City'>
+            <input id='arriveInput' type='text' value='' placeholder='Arrival City'>
             <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)">
             <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
         </form>
         <form>
             <label for='Departing'>Departing</label>
             <input id='departDate' name='Departing' type='date'>
-            <label for='Arriving'>Arriving</label>
+            <label for='Arriving'>Returning</label>
             <input id='arriveDate' name='Arriving' type='date'>
         </form>
         <div id='departWeather'><img src='' id='departIcon'></div>
