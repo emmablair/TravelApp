@@ -32,7 +32,7 @@ app.listen(8081, () => {
     console.log('Hello! Travel App is listening from port 8081!');
 });
 
-// ::: DEPART POST :::
+/* ::: DEPART POST ::: */
 app.post('/departGeoname', async(req, res) => {
     let baseURL = `http://api.geonames.org/searchJSON?q=`;
     let key = process.env.GEO_KEY;
@@ -57,7 +57,7 @@ app.post('/departGeoname', async(req, res) => {
     .catch((error) => console.log(':::ERROR server side /geoname:::', error));
 })
 
-// ::: ARRIVE POST :::
+/* ::: ARRIVE POST ::: */
 app.post('/arriveGeoname', async(req, res) => {
     let baseURL = `http://api.geonames.org/searchJSON?q=`;
     let key = process.env.GEO_KEY;
@@ -79,7 +79,7 @@ app.post('/arriveGeoname', async(req, res) => {
     .catch((error) => console.log(':::ERROR server side /geoname:::', error));
 })
 
-
+/* ::: WEATHER DEPARTURE ::: */
 app.post('/departWeather', async(req, res) => {
     let baseURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
     let key = process.env.WEATHER_KEY;
@@ -98,6 +98,7 @@ app.post('/departWeather', async(req, res) => {
     .catch((error) => console.log(':::ERROR server side /departWeather:::', error));
 })
 
+/* ::: WEATHER ARRIVAL ::: */
 app.post('/arriveWeather', async(req, res) => {
     let baseURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
     let key = process.env.WEATHER_KEY;
@@ -116,3 +117,20 @@ app.post('/arriveWeather', async(req, res) => {
     .catch((error) => console.log(':::ERROR server side /arriveWeather:::', error));
 })
 
+/* ::: PIXABAY ARRIVAL PIC ::: */
+app.post('/pixabay', async(req, res) => {
+    let baseURL = `https://pixabay.com/api/?`;
+    let key = process.env.PIXABAY_KEY;
+    let urlSettings = `&lang=en&per_page=3&image_type=photo`;
+    // lat & lng from GEONAMES api
+    let arriveInput = req.body.arrive;
+    console.log(latA);
+    console.log(lngA);
+    
+    let apiURL =`${baseURL}${key}&q=${arriveInput}${urlSettings}`;
+    console.log(apiURL);
+    let data = await fetch(apiURL)
+    .then((data) => data.json())
+    .then((data) => res.send(data))
+    .catch((error) => console.log(':::ERROR server side /pixabay:::', error));
+})
