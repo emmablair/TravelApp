@@ -21,11 +21,14 @@ const dateDifference = (date1, date2) => {
 // ::: form Handler Func :::
 const formHandler = async(e) => {
     e.preventDefault();
+    const departDate = document.querySelector('#departDate').value;
+    const arriveDate = document.querySelector('#arriveDate').value
     const departInput = document.querySelector('#departInput').value;
     const arriveInput = document.querySelector('#arriveInput').value;
+
     console.log('::: FORM SUBMITTED | GEONAMES :::')
     // ::: GEONAMES DEPART :::
-    const departGeo = await fetch('/departGeoname',  {
+    const departGeo = await fetch('/trip',  {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
@@ -34,7 +37,9 @@ const formHandler = async(e) => {
         },
         body: JSON.stringify({ 
             depart: departInput,
-            arrive: arriveInput
+            arrive: arriveInput,
+            dateD: departDate,
+            dateA: arriveDate
          })
     })
     .then(res => {
@@ -74,13 +79,13 @@ const formHandler = async(e) => {
 
 const getWeather = async(departGeo, arriveGeo) => {
     // ::: WEATHERBIT :::
-    const departInput = document.querySelector('#departDate').value;
-    const arriveInput = document.querySelector('#arriveDate').value;
+    const departDate = document.querySelector('#departDate').value;
+    const arriveDate = document.querySelector('#arriveDate').value;
     console.log(`current date:${currentDate}`);
     console.log(`Depart date:${departInput}`);
     console.log(`Arrival date:${arriveInput}`);
-    const departForcast = dateDifference(currentDate, departInput);
-    const arriveForcast = dateDifference(currentDate, arriveInput);
+    const departForcast = dateDifference(currentDate, departDate);
+    const arriveForcast = dateDifference(currentDate, arriveDate);
     console.log(`depart day difference:${departForcast}`);
     console.log(`arrival day difference:${arriveForcast}`);
     
@@ -158,5 +163,5 @@ const getPic = async(arriveInput, arriveGeo) => {
     });
     console.log('::: FORM SUBMITTED | PIXABAY ARRIVE :::');
     console.log(pixabay)
-    document.querySelector('#pixabay').src = pixabay.hits[0].largeImageURL
+    document.querySelector('#pixabay').src = pixabay.image;
 }
