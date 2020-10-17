@@ -8,22 +8,26 @@
     <body> 
         <img id='pixabay' src=''>
         <form onsubmit="return formHandler(event)">
-            <input id='departInput' type='text' value='' placeholder='Departure City'>
-            <input id='arriveInput' type='text' value='' placeholder='Arrival City'>
-            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)">
+            <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
+            <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
             <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
+            <form>
+                <label for='Departing'>Departing</label>
+                <input class='save' id='departDate' name='Departing' type='date'>
+                <label for='Arriving'>Returning</label>
+                <input class='save' id='arriveDate' name='Arriving' type='date'>
+            </form>
+            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)">
         </form>
-        <form>
-            <label for='Departing'>Departing</label>
-            <input id='departDate' name='Departing' type='date'>
-            <label for='Arriving'>Returning</label>
-            <input id='arriveDate' name='Arriving' type='date'>
-        </form>
+        
         <div id='departWeather'><img src='' id='departIcon'></div>
         <div id='arriveWeather'><img src='' id='arriveIcon'></div>
 
         <section>
-            <div id='savedTrips'></div>
+            <div id='savedTrips'>
+                <h2>Trips</h2>
+                <ul></ul>
+            </div>
         </section>
 
         <script src='../js/formhandler.js'></script>
