@@ -1,19 +1,26 @@
 // empty object for API endpoint
 const projectData = {
-    departFrom: '',
-    departDay: '',
-    departLat: '',
-    departLng: '',
-    weatherDTemp: '',
-    weatherDIcon: '',
-    weatherDCloud: '',
-    arriveAt: '',
-    arriveDay: '',
-    arriveLat: '',
-    arriveLng: '',
-    weatherATemp: '',
-    weatherAIcon: '',
-    weatherACloud: '',
+    departure: {
+        departFrom: '',
+        specifyPlaceD: '',
+        departDay: '',
+        departLat: '',
+        departLng: '',
+        weatherDTemp: '',
+        weatherDIcon: '',
+        weatherDCloud: ''
+    },
+    arrival: {
+        arriveAt: '',
+        specifyPlaceA: '',
+        arriveDay: '',
+        arriveLat: '',
+        arriveLng: '',
+        weatherATemp: '',
+        weatherAIcon: '',
+        weatherACloud: '',
+        pixArrival: ''
+    }
   };
 
 // .env file to hide API keys
@@ -59,9 +66,8 @@ const geoKey = process.env.GEO_KEY;
 const geoNameDepart = async (baseURL, key, departInput) => {
     let urlSettings = `&maxRows=1&lang=en`;
     let url = `${baseURL}${departInput}${urlSettings}${key}`;
-
+    console.log(url);
     let res = await fetch(url);
-    // console.log(res);
     try {
         let data = await res.json();
         return data;
@@ -97,7 +103,7 @@ const geoNameDepart = async (baseURL, key, departInput) => {
 const geoNameArrive = async (baseURL, key, arriveInput) => {
     let urlSettings = `&maxRows=1&lang=en`;
     let url = `${baseURL}${arriveInput}${urlSettings}${key}`;
-
+    console.log(url);
     let res = await fetch(url);
     // console.log(res);
     try {
@@ -135,7 +141,7 @@ const weatherKey = process.env.WEATHER_KEY;
 
 const weatherDepart = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
-    let url = `${baseURL}${key}&lat=${projectData.departLat}&lon=${projectData.departLng}${urlSettings}`;
+    let url = `${baseURL}${key}&lat=${projectData.departure.departLat}&lon=${projectData.departure.departLng}${urlSettings}`;
     console.log(url)
     let res = await fetch(url);
     // console.log(res);
@@ -168,7 +174,7 @@ const weatherDepart = async (baseURL, key) => {
 
 const weatherArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
-    let url = `${baseURL}${key}&lat=${projectData.arriveLat}&lon=${projectData.arriveLng}${urlSettings}`;
+    let url = `${baseURL}${key}&lat=${projectData.arrival.arriveLat}&lon=${projectData.arrival.arriveLng}${urlSettings}`;
 
     let res = await fetch(url);
     // console.log(res);
@@ -198,6 +204,22 @@ const weatherArrive = async (baseURL, key) => {
 //     .then((data) => res.send(data))
 //     .catch((error) => console.log(':::ERROR server side /arriveWeather:::', error));
 // })
+const pixURL = `https://pixabay.com/api/?`;
+const pixKey = process.env.PIXABAY_KEY;
+
+const pixArrive = async (baseURL, key) => {
+    let urlSettings = `&lang=en&per_page=3&category=travel&image_type=photo`;
+    let url = `${baseURL}${key}&q=${projectData.arrival.arriveAt}+${projectData.arrival.specifyPlaceA}${urlSettings}`;
+    console.log(url);
+    let res = await fetch(url);
+    try {
+        let data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(':::ERROR ARRIVE server side /geoname:::', error);
+    }
+};
+
 
 // /* ::: PIXABAY ARRIVAL PIC ::: */
 // app.post('/pixabay', async(req, res) => {
@@ -226,18 +248,19 @@ app.post('/trip', async(req, res) => {
     let departDate = req.body.dateD;
     let arriveDate = req.body.dateA;
 
+    /* ::: Current date in date input field ::: */
     Date.prototype.toDateInputValue = (function() {
         // allow correct timezone
         var local = new Date(this);
         local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
         return local.toJSON().slice(0,10);
     });
-    // apply current date
+    /* ::: apply current date ::: */
     const currentDate = new Date().toDateInputValue();
     departDate = currentDate; //.valueAsDate without timezone also works
     arriveDate = currentDate; //.valueAsDate without timezone also works
 
-    //::: date diffence for weather Forcast :::
+    /* ::: date diffence for weather Forcast ::: */
     const dateDifference = (date1, date2) => {
         dt1 = new Date(date1);
         dt2 = new Date(date2);
@@ -247,32 +270,36 @@ app.post('/trip', async(req, res) => {
 
     const departInput = req.body.depart;
     const arriveInput = req.body.arrive;
-    
-    projectData.departFrom = departInput;
-    projectData.arriveAt = arriveInput;
-    projectData.departDay = departDate;
-    projectData.arriveDay = arriveDate;
-
-    let departGeo = await geoNameDepart(geoURL, geoKey, departInput)
-    projectData.departLat = departGeo.geonames[0].lat
-    projectData.departLng = departGeo.geonames[0].lng
-
-    let arriveGeo = await geoNameArrive(geoURL, geoKey, arriveInput)
-    projectData.arriveLat = arriveGeo.geonames[0].lat
-    projectData.arriveLng = arriveGeo.geonames[0].lng
-
 
     const departForcast = dateDifference(currentDate, departDate);
     const arriveForcast = dateDifference(currentDate, arriveDate);
+    
+    projectData.departure.departFrom = departInput;
+    projectData.arrival.arriveAt = arriveInput;
+    projectData.departure.departDay = departDate;
+    projectData.arrival.arriveDay = arriveDate;
+
+    let departGeo = await geoNameDepart(geoURL, geoKey, departInput)
+    projectData.departure.departLat = departGeo.geonames[0].lat;
+    projectData.departure.departLng = departGeo.geonames[0].lng;
+    projectData.departure.specifyPlaceD = departGeo.geonames[0].adminName1;
+
+    let arriveGeo = await geoNameArrive(geoURL, geoKey, arriveInput)
+    projectData.arrival.arriveLat = arriveGeo.geonames[0].lat;
+    projectData.arrival.arriveLng = arriveGeo.geonames[0].lng;
+    projectData.arrival.specifyPlaceA = arriveGeo.geonames[0].adminName1;
+
     let weatherD = await weatherDepart(weatherURL, weatherKey)
-    projectData.weatherDTemp = weatherD.data[departForcast].temp;
-    projectData.weatherDIcon = weatherD.data[departForcast].weather.icon;
-    projectData.weatherDCloud = weatherD.data[departForcast].weather.description;
+    projectData.departure.weatherDTemp = weatherD.data[departForcast].temp;
+    projectData.departure.weatherDIcon = weatherD.data[departForcast].weather.icon;
+    projectData.departure.weatherDCloud = weatherD.data[departForcast].weather.description;
     let weatherA = await weatherArrive(weatherURL, weatherKey)
-    projectData.weatherATemp = weatherA.data[arriveForcast].temp;
-    projectData.weatherAIcon = weatherA.data[arriveForcast].weather.icon;
-    projectData.weatherACloud = weatherD.data[arriveForcast].weather.description;
-    console.log(projectData)
-})
-// latD: data.geonames[0].lat,
-//         lngD: data.geonames[0].lng,
+    projectData.arrival.weatherATemp = weatherA.data[arriveForcast].temp;
+    projectData.arrival.weatherAIcon = weatherA.data[arriveForcast].weather.icon;
+    projectData.arrival.weatherACloud = weatherD.data[arriveForcast].weather.description;
+
+    let pixabayA = await pixArrive(pixURL, pixKey);
+    projectData.arrival.pixArrival = pixabayA.hits[0].largeImageURL;
+    console.log(projectData);
+    res.send(projectData);
+});
