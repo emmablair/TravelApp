@@ -72,7 +72,7 @@ const geoNameDepart = async (baseURL, key, departInput) => {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(':::ERROR DEPART server side /geoname:::', error);
+        console.log(':::ERROR GEO DEPART | server side:::', error);
     }
 };
 
@@ -86,7 +86,7 @@ const geoNameArrive = async (baseURL, key, arriveInput) => {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(':::ERROR ARRIVE server side /geoname:::', error);
+        console.log(':::ERROR GEO ARRIVE | server side:::', error);
     }
 };
 
@@ -103,7 +103,7 @@ const weatherDepart = async (baseURL, key) => {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(':::ERROR ARRIVE server side /geoname:::', error);
+        console.log(':::ERROR WEATHER DEPART | server side:::', error);
     }
 };
 
@@ -117,7 +117,7 @@ const weatherArrive = async (baseURL, key) => {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(':::ERROR ARRIVE server side /geoname:::', error);
+        console.log(':::ERROR WEATHER ARRIVE | server side:::', error);
     }
 };
 
@@ -133,7 +133,7 @@ const pixArrive = async (baseURL, key) => {
         let data = await res.json();
         return data;
     } catch (error) {
-        console.log(':::ERROR ARRIVE server side /geoname:::', error);
+        console.log(':::ERROR PIXABAY | server side:::', error);
     }
 };
     
