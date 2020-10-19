@@ -27,9 +27,13 @@ const formHandler = async(e) => {
         return postData;
     })
     .catch((error) => {
-        console.log('::: ERROR TRIPINFO | client side :::', error);
+        console.log('::: ERROR TRIPNFO | client side :::', error);
     });
     console.log(tripInfo);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
     updateUI(tripInfo)
+}
+
+const updateUI = (tripInfo) => {
+    console.log(tripInfo.departure.day)
 }
