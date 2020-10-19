@@ -6,9 +6,9 @@ const formHandler = async(e) => {
     const departInput = document.querySelector('#departInput').value;
     const arriveInput = document.querySelector('#arriveInput').value;
 
-    console.log('::: FORM SUBMITTED | GEONAMES :::')
-    // ::: GEONAMES DEPART :::
-    const departGeo = await fetch('/trip',  {
+    console.log('::: FORM SUBMITTED | TRIPINFO :::')
+/* ::: ALL TRIP INFO | DEPART & ARRIVE ::: */
+    const tripInfo = await fetch('/trip',  {
         method: 'POST',
         credentials: 'same-origin',
         mode: 'cors',
@@ -27,8 +27,9 @@ const formHandler = async(e) => {
         return postData;
     })
     .catch((error) => {
-        console.log('GEONAMES promise error', error);
+        console.log('::: ERROR TRIPINFO | client side :::', error);
     });
-    console.log(departGeo);
-    console.log('done')
+    console.log(tripInfo);
+    console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
+    updateUI(tripInfo)
 }
