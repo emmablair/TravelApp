@@ -84,14 +84,12 @@ const save = async() => {
                 "Content-Type": "application/json",
             },
         })
-        .then(res => {
-            const postData = res.json();
-            return postData;
-        })
-        .catch((error) => {
-            console.log('::: ERROR TRIPNFO | client side :::', error);
-        });
-        console.log(trip)
+        try{
+            const allData = await trip.json();
+            console.log(allData)
+        } catch (error) {
+            console.log('error', error);
+        }
     })
 }
 save()
