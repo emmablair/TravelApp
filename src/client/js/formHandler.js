@@ -43,28 +43,14 @@ const formHandler = async(e) => {
         return postData;
     })
     .catch((error) => {
-        console.log('::: ERROR TRIPINFO | client side :::', error);
+        console.log('::: ERROR TRIPNFO | client side :::', error);
     });
     console.log(tripInfo);
-    console.log(tripInfo.arrival.at);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
-    // const saved = document.querySelector('#save').value;
-    save(tripInfo);
-    
-    storage(tripInfo)
-    // storage(tripInfo);
+    // save(e, tripInfo);
+    storage(tripInfo);
     updateUI(tripInfo);
 }
-
-const save = (tripInfo) => {
-    document.querySelector('#save').addEventListener('click', (tripInfo) => {
-        let savedTrips = document.querySelector('#savedTrips');
-        let div = document.createElement('div');
-        savedTrips.appendChild(div)
-        div.innerHTML = `${tripInfo.arrival.at}`
-    })
-}
-
 
 const storage = (tripInfo) => {
     let tripInfos;
@@ -75,42 +61,37 @@ const storage = (tripInfo) => {
     }
     tripInfos.push(tripInfo);
     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
+    console.log(tripInfo.arrival)
 }
 
-// const save = (e, tripInfo) => {
-//     e.preventDefault();
-//     storage(tripInfo);
-    
-//     // if(saved.click()) {
-//     //     console.log(tripInfos[i])
-//     // } else if(deleted.click()) {
-//     //     removeItem(tripInfo[i])
-//     // }
-// }
-
-// save(e, tripInfo);
 
 const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
 console.log(tripInfos[0])
 
 
-
-
-// for(let i=0; i<5; i++) {
-//     console.log(tripInfos[i])
-//     if([i]>5) {
-//         alert('You're only )
-//     }
-// }
-
-// for(let i=0; i<5; i++)
-//     tripInfos.push(tripInfo[i]);
-
-// tripInfos.forEach((tripInfo) => {
-//     console.log(tripInfo)
-// })
-
-
 const updateUI = (tripInfo) => {
     console.log(tripInfo.departure.day)
 }
+
+const save = async() => {
+    document.querySelector('#save').addEventListener('click', async() => {
+        console.log('CLICK')
+        const trip = await fetch('/all',  {
+            method: 'GET',
+            credentials: 'same-origin',
+            mode: 'cors',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => {
+            const postData = res.json();
+            return postData;
+        })
+        .catch((error) => {
+            console.log('::: ERROR TRIPNFO | client side :::', error);
+        });
+        console.log(trip)
+    })
+}
+save()
