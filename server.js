@@ -96,9 +96,9 @@ const weatherKey = process.env.WEATHER_KEY;
 const weatherDepart = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
     let url = `${baseURL}${key}&lat=${projectData.departure.lat}&lon=${projectData.departure.lng}${urlSettings}`;
-    console.log(url)
+    console.log(url);
     let res = await fetch(url);
-    // console.log(res);
+
     try {
         let data = await res.json();
         return data;
@@ -110,9 +110,9 @@ const weatherDepart = async (baseURL, key) => {
 const weatherArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
     let url = `${baseURL}${key}&lat=${projectData.arrival.lat}&lon=${projectData.arrival.lng}${urlSettings}`;
-
+    console.log(url);
     let res = await fetch(url);
-    // console.log(res);
+
     try {
         let data = await res.json();
         return data;
@@ -143,7 +143,7 @@ app.post('/trip', async(req, res) => {
     let departDate = req.body.dateD;
     let arriveDate = req.body.dateA;
 
-    /* ::: Current date in date input field ::: */
+    // /* ::: Current date in date input field ::: */
     Date.prototype.toDateInputValue = (function() {
         // allow correct timezone
         var local = new Date(this);
