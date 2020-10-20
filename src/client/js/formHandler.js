@@ -47,6 +47,7 @@ const formHandler = async(e) => {
     });
     console.log(tripInfo);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
+    saveDelete(e, tripInfo);
     storage(tripInfo);
     updateUI(tripInfo);
 }
@@ -62,8 +63,31 @@ const storage = (tripInfo) => {
     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
 }
 
+
 const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
 console.log(tripInfos[0])
+
+const saveDelete = (e, tripInfo) => {
+    let saved = document.querySelector('#save');
+    let deleted = document.querySelector('#delete');
+    e.preventDefault();
+    if(saved.click()) {
+        console.log(tripInfos[i])
+    } else if(deleted.click()) {
+        removeItem(tripInfo[i])
+    }
+}
+
+
+// for(let i=0; i<5; i++) {
+//     console.log(tripInfos[i])
+//     if([i]>5) {
+//         alert('You're only )
+//     }
+// }
+
+// for(let i=0; i<5; i++)
+//     tripInfos.push(tripInfo[i]);
 
 // tripInfos.forEach((tripInfo) => {
 //     console.log(tripInfo)
