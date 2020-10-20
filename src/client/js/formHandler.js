@@ -43,14 +43,28 @@ const formHandler = async(e) => {
         return postData;
     })
     .catch((error) => {
-        console.log('::: ERROR TRIPNFO | client side :::', error);
+        console.log('::: ERROR TRIPINFO | client side :::', error);
     });
     console.log(tripInfo);
+    console.log(tripInfo.arrival.at);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
-    saveDelete(e, tripInfo);
-    storage(tripInfo);
+    // const saved = document.querySelector('#save').value;
+    save(tripInfo);
+    
+    storage(tripInfo)
+    // storage(tripInfo);
     updateUI(tripInfo);
 }
+
+const save = (tripInfo) => {
+    document.querySelector('#save').addEventListener('click', (tripInfo) => {
+        let savedTrips = document.querySelector('#savedTrips');
+        let div = document.createElement('div');
+        savedTrips.appendChild(div)
+        div.innerHTML = `${tripInfo.arrival.at}`
+    })
+}
+
 
 const storage = (tripInfo) => {
     let tripInfos;
@@ -63,20 +77,23 @@ const storage = (tripInfo) => {
     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
 }
 
+// const save = (e, tripInfo) => {
+//     e.preventDefault();
+//     storage(tripInfo);
+    
+//     // if(saved.click()) {
+//     //     console.log(tripInfos[i])
+//     // } else if(deleted.click()) {
+//     //     removeItem(tripInfo[i])
+//     // }
+// }
+
+// save(e, tripInfo);
 
 const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
 console.log(tripInfos[0])
 
-const saveDelete = (e, tripInfo) => {
-    let saved = document.querySelector('#save');
-    let deleted = document.querySelector('#delete');
-    e.preventDefault();
-    if(saved.click()) {
-        console.log(tripInfos[i])
-    } else if(deleted.click()) {
-        removeItem(tripInfo[i])
-    }
-}
+
 
 
 // for(let i=0; i<5; i++) {
