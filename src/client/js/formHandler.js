@@ -56,16 +56,22 @@ const storage = (trip) => {
     let trips;
     if(localStorage.getItem('trips') === null) {
         trips = [];
+    // } else if (save()) {
+    //     trips.push(trip);
     } else {
         trips = JSON.parse(localStorage.getItem('trips'));
-        // addSave(trips);
+        
     }
-    trips.push(trip);
+    // trips.push(trip);
     localStorage.setItem('trips', JSON.stringify(trips));
-    // addSave(trips);
-    addSave(trip);
+    
+    // addSave(trip);
     // console.log(trip.arrival)
-}
+};
+
+storage()
+
+
 // GO BACK AND GET FOREACH LOCAL STORAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // TO MAKE SURE ALL OLD INFO IS SHOWN AFTER LOAD AND REFRESH @ WINDOW OPENING
 
@@ -108,3 +114,11 @@ const addSave = (allData) => {
     savedTrips.appendChild(div)
     div.innerHTML = `${allData.arrival.at}`  
 }
+
+
+// const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+// console.log(tripInfos[0])
+
+// tripInfos.forEach((tripInfo) => {
+//     console.log(tripInfo)
+// })
