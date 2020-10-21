@@ -97,7 +97,7 @@ const save = async() => {
         try{
             const allData = await trip.json();
             console.log(allData)
-            storage(allData);
+            // storage(allData);
             // addSave(allData);
         } catch (error) {
             console.log('error', error);
