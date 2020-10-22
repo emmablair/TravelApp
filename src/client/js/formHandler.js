@@ -60,11 +60,12 @@ const storage = (trip) => {
     //     trips.push(trip);
     } else {
         trips = JSON.parse(localStorage.getItem('trips'));
-        
+        trips.push(trip);
+
     }
     // trips.push(trip);
     localStorage.setItem('trips', JSON.stringify(trips));
-    
+    // trips.push(trip);
     // addSave(trip);
     // console.log(trip.arrival)
 };
@@ -98,21 +99,25 @@ const save = async() => {
             const allData = await trip.json();
             console.log(allData)
             // storage(allData);
-            // addSave(allData);
+            // return allData;
+            addSave(allData);
         } catch (error) {
             console.log('error', error);
         }
         // storage(trip);
     })
     
-}
+};
 save()
+
+
 
 const addSave = (allData) => {
     let savedTrips = document.querySelector('#savedTrips');
     let div = document.createElement('div');
     savedTrips.appendChild(div)
     div.innerHTML = `${allData.arrival.at}`  
+    storage(allData)
 }
 
 
