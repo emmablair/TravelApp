@@ -76,17 +76,23 @@ save()
 const addSave = (allData) => {
     let savedTrip = document.querySelector('#savedTrips');
     let divs = document.createElement('div');
-    let button = document.createElement('button')
+    // let button = document.createElement('button')
     savedTrip.appendChild(divs)
     divs.classList.add('trip')
-    const save = document.querySelector('.trip');
-    save.appendChild(button).innerHTML = 'Delete'
     const saves = document.querySelectorAll('.trip');
+    // const save = document.querySelector('.trip');
+
+    // divs.appendChild(button)
+   
     saves.forEach ( () =>{ 
-    for (let i = 0; i < saves.length ; i++) {
+    // UNIQUE ID FOR EACH SAVES TRIP
+    for (let i = 0; i < saves.length; i++) {
         saves[i].classList.add(`saved${i + 1}`);
-    }})
-    divs.innerHTML = `${allData.arrival.at}` 
+        // saves[i].appendChild(button).innerHTML = 'Delete'
+    }
+    
+    })
+    divs.innerHTML = 
     
     
 };
