@@ -169,17 +169,19 @@ app.post('/trip', async(req, res) => {
     const departForcast = dateDifference(currentDate, departDate);
     const arriveForcast = dateDifference(currentDate, arriveDate);
     
-    projectData.departure.from = departInput;
-    projectData.arrival.at = arriveInput;
+    // projectData.departure.from = departGeo.geonames[0].toponymName;
+    // projectData.arrival.at = arriveGeo.geonames[0].toponymName;
     projectData.departure.day = departDate;
     projectData.arrival.day = arriveDate;
 
     let departGeo = await geoNameDepart(geoURL, geoKey, departInput)
+    projectData.departure.from = departGeo.geonames[0].toponymName;
     projectData.departure.lat = departGeo.geonames[0].lat;
     projectData.departure.lng = departGeo.geonames[0].lng;
     projectData.departure.specifyPlace = departGeo.geonames[0].adminName1;
 
     let arriveGeo = await geoNameArrive(geoURL, geoKey, arriveInput)
+    projectData.arrival.at = arriveGeo.geonames[0].toponymName;
     projectData.arrival.lat = arriveGeo.geonames[0].lat;
     projectData.arrival.lng = arriveGeo.geonames[0].lng;
     projectData.arrival.specifyPlace = arriveGeo.geonames[0].adminName1;
