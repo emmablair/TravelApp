@@ -48,10 +48,11 @@ const formHandler = async(e) => {
     console.log(tripInfo);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
     // save(e, tripInfo);
-    // storage(tripInfo);
-    // updateUI(tripInfo);
+    storage(tripInfo);
+    updateUI(tripInfo);
 }
 
+<<<<<<< HEAD
 const storage = (trip) => {
     let trips;
     if(localStorage.getItem('trips') === null) {
@@ -75,14 +76,28 @@ storage()
 
 // GO BACK AND GET FOREACH LOCAL STORAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // TO MAKE SURE ALL OLD INFO IS SHOWN AFTER LOAD AND REFRESH @ WINDOW OPENING
+=======
+const storage = (tripInfo) => {
+    let tripInfos;
+    if(localStorage.getItem('tripInfos') === null) {
+        tripInfos = [];
+    } else {
+        tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+    }
+    tripInfos.push(tripInfo);
+    localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
+    console.log(tripInfo.arrival)
+}
+>>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
 
-// const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-// console.log(tripInfos[0])
+
+const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+console.log(tripInfos[0])
 
 
-// const updateUI = (tripInfo) => {
-//     console.log(tripInfo.departure.day)
-// }
+const updateUI = (tripInfo) => {
+    console.log(tripInfo.departure.day)
+}
 
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
@@ -98,14 +113,17 @@ const save = async() => {
         try{
             const allData = await trip.json();
             console.log(allData)
+<<<<<<< HEAD
             // storage(allData);
             // return allData;
             addSave(allData);
+=======
+>>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
         } catch (error) {
             console.log('error', error);
         }
-        // storage(trip);
     })
+<<<<<<< HEAD
     
 };
 save()
@@ -127,3 +145,7 @@ const addSave = (allData) => {
 // tripInfos.forEach((tripInfo) => {
 //     console.log(tripInfo)
 // })
+=======
+}
+save()
+>>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
