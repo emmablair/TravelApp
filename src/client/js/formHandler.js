@@ -92,7 +92,10 @@ const addSave = (allData) => {
     }
     
     })
-    divs.innerHTML = 
+    divs.innerHTML = `
+        <div class='picBox_Save'><img class='pic_Save' src='${allData.arrival.pixabay}' alt='Picture of ${allData.arrival.at}, ${allData.arrival.specifyPlace}'></div>
+        <div class='arrival_Save'>${allData.arrival.at}, ${allData.arrival.specifyPlace}</div>
+    ` 
     
     
 };
