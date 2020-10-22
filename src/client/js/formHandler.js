@@ -47,56 +47,6 @@ const formHandler = async(e) => {
     });
     console.log(tripInfo);
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
-    // save(e, tripInfo);
-    storage(tripInfo);
-    updateUI(tripInfo);
-}
-
-<<<<<<< HEAD
-const storage = (trip) => {
-    let trips;
-    if(localStorage.getItem('trips') === null) {
-        trips = [];
-    // } else if (save()) {
-    //     trips.push(trip);
-    } else {
-        trips = JSON.parse(localStorage.getItem('trips'));
-        trips.push(trip);
-
-    }
-    // trips.push(trip);
-    localStorage.setItem('trips', JSON.stringify(trips));
-    // trips.push(trip);
-    // addSave(trip);
-    // console.log(trip.arrival)
-};
-
-storage()
-
-
-// GO BACK AND GET FOREACH LOCAL STORAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// TO MAKE SURE ALL OLD INFO IS SHOWN AFTER LOAD AND REFRESH @ WINDOW OPENING
-=======
-const storage = (tripInfo) => {
-    let tripInfos;
-    if(localStorage.getItem('tripInfos') === null) {
-        tripInfos = [];
-    } else {
-        tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-    }
-    tripInfos.push(tripInfo);
-    localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
-    console.log(tripInfo.arrival)
-}
->>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
-
-
-const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-console.log(tripInfos[0])
-
-
-const updateUI = (tripInfo) => {
-    console.log(tripInfo.departure.day)
 }
 
 const save = async() => {
@@ -113,39 +63,36 @@ const save = async() => {
         try{
             const allData = await trip.json();
             console.log(allData)
-<<<<<<< HEAD
-            // storage(allData);
-            // return allData;
             addSave(allData);
-=======
->>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
+            return allData;
         } catch (error) {
             console.log('error', error);
         }
     })
-<<<<<<< HEAD
     
 };
 save()
 
-
-
 const addSave = (allData) => {
-    let savedTrips = document.querySelector('#savedTrips');
-    let div = document.createElement('div');
-    savedTrips.appendChild(div)
-    div.innerHTML = `${allData.arrival.at}`  
-    storage(allData)
-}
+    let savedTrip = document.querySelector('#savedTrips');
+    let divs = document.createElement('div');
+    let button = document.createElement('button')
+    savedTrip.appendChild(divs)
+    divs.classList.add('trip')
+    const save = document.querySelector('.trip');
+    save.appendChild(button).innerHTML = 'Delete'
+    const saves = document.querySelectorAll('.trip');
+    saves.forEach ( () =>{ 
+    for (let i = 0; i < saves.length ; i++) {
+        saves[i].classList.add(`saved${i + 1}`);
+    }})
+    divs.innerHTML = `${allData.arrival.at}` 
+    
+    
+};
 
+// const deleted = () => {
+//     document.querySelector('#delete').addEventListener('click', () => {
 
-// const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-// console.log(tripInfos[0])
-
-// tripInfos.forEach((tripInfo) => {
-//     console.log(tripInfo)
-// })
-=======
-}
-save()
->>>>>>> parent of 6cc8ec2... save too localStorage only at click of SAVE button
+//     })
+// }
