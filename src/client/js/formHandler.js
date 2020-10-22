@@ -64,6 +64,7 @@ const save = async() => {
             const allData = await trip.json();
             console.log(allData)
             addSave(allData);
+            // deleteTrip()
             return allData;
         } catch (error) {
             console.log('error', error);
@@ -83,22 +84,58 @@ const addSave = (allData) => {
     // const save = document.querySelector('.trip');
 
     // divs.appendChild(button)
-   
-    saves.forEach ( () =>{ 
-    // UNIQUE ID FOR EACH SAVES TRIP
-    for (let i = 0; i < saves.length; i++) {
-        saves[i].classList.add(`saved${i + 1}`);
-        // saves[i].appendChild(button).innerHTML = 'Delete'
-    }
-    
-    })
+
     divs.innerHTML = `
-        <div class='picBox_Save'><img class='pic_Save' src='${allData.arrival.pixabay}' alt='Picture of ${allData.arrival.at}, ${allData.arrival.specifyPlace}'></div>
-        <div class='arrival_Save'>${allData.arrival.at}, ${allData.arrival.specifyPlace}</div>
+    <div class='picBox_Save'><img class='pic_Save' src='${allData.arrival.pixabay}' alt='Picture of ${allData.arrival.at}, ${allData.arrival.specifyPlace}'></div>
+    <div class='arrival_Save'>${allData.arrival.at}, ${allData.arrival.specifyPlace}</div>
+    <button class='delete'>Delete</button>
     ` 
-    
-    
+    let buttons = document.querySelectorAll('.delete')
+    saves.forEach( () =>{ 
+    // UNIQUE ID FOR EACH SAVES TRIP
+        for (let i = 0; i < saves.length; i++) {
+            saves[i].classList.add(`saved_deleted${i + 1}`);
+            // button[i].classList.add(`deleted${i + 1}`)
+            // saves[i].appendChild(button).innerHTML = 'Delete'
+        }
+    }) 
+    buttons.forEach( () => {
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].id = (`saved_deleted${i + 1}`);
+            // document.querySelector(`#saved_deleted${i + 1}`).addEventListener('click', (e) => {
+            //     const id = e.currentTarget.getAttribute('id');
+            //     const div = document.querySelectorAll('div');
+            //     console.log(`Delete ${id}`)
+            //     let deleteMe = document.querySelector(`#saved_deleted${i + 1}`)
+            //     deleteMe.remove();
+            //     // if(div.id = (`${id}`)) {
+            //     //     div.remove()
+            //     // }
+            // })
+        }
+    })
+    deleteTrip()
 };
+
+const deleteTrip = () => {
+    const saves = document.querySelectorAll('.trip');
+    saves.forEach( () => {
+        for (let i = 0; i < saves.length; i++) {
+            // buttons[i].id = (`saved_deleted${i + 1}`);
+            document.querySelector(`#saved_deleted${i + 1}`).addEventListener('click', (e) => {
+                const id = e.currentTarget.getAttribute('id');
+                const div = document.querySelectorAll('div');
+                console.log(`Delete ${id}`)
+                let deleteMe = document.querySelectorAll(`#saved_deleted${i + 1}`)
+                deleteMe.remove();
+                // if(div.id = (`${id}`)) {
+                //     div.remove()
+                // }
+            })
+        }
+    })
+}
+
 
 // const deleted = () => {
 //     document.querySelector('#delete').addEventListener('click', () => {
