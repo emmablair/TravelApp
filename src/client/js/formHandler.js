@@ -101,7 +101,7 @@ const addSave = (allData) => {
     }) 
     buttons.forEach( () => {
         for (let i = 0; i < buttons.length; i++) {
-            buttons[i].id = (`saved_deleted${i + 1}`);
+            buttons[i].classList.add(`saved_deleted${i + 1}`);
             // document.querySelector(`#saved_deleted${i + 1}`).addEventListener('click', (e) => {
             //     const id = e.currentTarget.getAttribute('id');
             //     const div = document.querySelectorAll('div');
@@ -122,15 +122,11 @@ const deleteTrip = () => {
     saves.forEach( () => {
         for (let i = 0; i < saves.length; i++) {
             // buttons[i].id = (`saved_deleted${i + 1}`);
-            document.querySelector(`#saved_deleted${i + 1}`).addEventListener('click', (e) => {
-                const id = e.currentTarget.getAttribute('id');
-                const div = document.querySelectorAll('div');
-                console.log(`Delete ${id}`)
-                let deleteMe = document.querySelectorAll(`#saved_deleted${i + 1}`)
-                deleteMe.remove();
-                // if(div.id = (`${id}`)) {
-                //     div.remove()
-                // }
+            document.querySelector(`.saved_deleted${i + 1}`).addEventListener('click', (e) => {
+                console.log(`Delete saved_deleted${i + 1}`)
+                const deleteMe = document.querySelectorAll(`.saved_deleted${i + 1}`)
+                console.log(deleteMe)
+                // deleteMe.delete();
             })
         }
     })
