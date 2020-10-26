@@ -112,9 +112,10 @@ const save = async() => {
 };
 save()
 
-const updateSavedTrip = () => {
+const updateSavedTrip = (divs) => {
+    const trips = JSON.parse(localStorage.getItem('tripInfos'));
     trips.forEach( () => {
-        for (let i = 0; i < tripInfos.length; i++){
+        for (let i = 0; i < trips.length; i++){
         divs.innerHTML = `
         <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
         <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
@@ -126,22 +127,19 @@ const updateSavedTrip = () => {
 const addSave = (tripInfos) => {
     let savedTrip = document.querySelector('#savedTrips');
     let divs = document.createElement('div');
-    // let button = document.createElement('button')
     savedTrip.appendChild(divs)
     divs.classList.add('trip')
     const saves = document.querySelectorAll('.trip');
-    // const save = document.querySelector('.trip');
-
-    // divs.appendChild(button)
-    const trips = JSON.parse(localStorage.getItem('tripInfos'));
-    trips.forEach( () => {
-        for (let i = 0; i < tripInfos.length; i++){
-        divs.innerHTML = `
-        <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
-        <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
-        <button class='delete'>Delete</button>
-        `} 
-     })   
+    updateSavedTrip(divs);
+    // const trips = JSON.parse(localStorage.getItem('tripInfos'));
+    // trips.forEach( () => {
+    //     for (let i = 0; i < tripInfos.length; i++){
+    //     divs.innerHTML = `
+    //     <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
+    //     <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
+    //     <button class='delete'>Delete</button>
+    //     `} 
+    //  })   
     let buttons = document.querySelectorAll('.delete')
     saves.forEach( () => { 
     // UNIQUE ID FOR EACH SAVES TRIP
@@ -151,19 +149,21 @@ const addSave = (tripInfos) => {
             // saves[i].appendChild(button).innerHTML = 'Delete'
         }
     }) 
-    deleteTrip()
+    deleteTrip(tripInfos)
 };
 
-const deleteTrip = () => {
+const deleteTrip = (tripInfos) => {
     const saves = document.querySelectorAll('.trip');
     saves.forEach( () => {
         for (let i = 0; i < saves.length; i++) {
-            // buttons[i].id = (`saved_deleted${i + 1}`);
             document.querySelector(`.saved_deleted${i + 1}`).addEventListener('click', (e) => {
                 console.log(`Delete saved_deleted${i + 1}`)
                 const deleteMe = document.querySelector(`.saved_deleted${i + 1}`)
                 console.log(deleteMe)
                 deleteMe.remove();
+                tripInfos.splice([i], 1);
+                // deletes value & resets localstoage
+                localStorage.tripInfos = JSON.stringify(tripInfos);
             })
         }
     })
