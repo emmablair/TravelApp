@@ -49,6 +49,44 @@ const formHandler = async(e) => {
     console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
 }
 
+
+// const storage = () => {
+//     let tripInfos;
+//     if(localStorage.getItem('tripInfos') === null) {
+//         tripInfos = [];
+//     } else {
+//         tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+//     }
+//     // tripInfos.push(tripInfo);
+//     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
+//     // console.log(tripInfo.arrival)
+//     const divs = document.querySelectorAll('.trip');
+//     divs.innerHTML = `
+//     <div class='picBox_Save'><img class='pic_Save' src='${tripInfos[0].arrival.pixabay}' alt='Picture of ${tripInfos[0].arrival.at}, ${tripInfos[0].arrival.specifyPlace}'></div>
+//     <div class='arrival_Save'>${tripInfos[0].arrival.at}, ${tripInfos[0].arrival.specifyPlace}</div>
+//     <button class='delete'>Delete</button>
+//     `
+// }
+// storage();
+
+const store = (tripInfo) => {
+    let tripInfos;
+    if(localStorage.getItem('tripInfos') === null) {
+        tripInfos = [];
+    } else {
+        tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+    }
+    tripInfos.push(tripInfo);
+    localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
+    addSave(tripInfos);
+    console.log(tripInfo.arrival)
+}
+
+
+// const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+// console.log(tripInfos[0])
+
+
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
         console.log('CLICK')
@@ -63,8 +101,8 @@ const save = async() => {
         try{
             const allData = await trip.json();
             console.log(allData)
-            addSave(allData);
-            // deleteTrip()
+            // addSave(allData);
+            store(allData)
             return allData;
         } catch (error) {
             console.log('error', error);
@@ -74,7 +112,18 @@ const save = async() => {
 };
 save()
 
-const addSave = (allData) => {
+const updateSavedTrip = () => {
+    trips.forEach( () => {
+        for (let i = 0; i < tripInfos.length; i++){
+        divs.innerHTML = `
+        <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
+        <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
+        <button class='delete'>Delete</button>
+        `} 
+     })  
+}
+
+const addSave = (tripInfos) => {
     let savedTrip = document.querySelector('#savedTrips');
     let divs = document.createElement('div');
     // let button = document.createElement('button')
@@ -84,14 +133,17 @@ const addSave = (allData) => {
     // const save = document.querySelector('.trip');
 
     // divs.appendChild(button)
-
-    divs.innerHTML = `
-    <div class='picBox_Save'><img class='pic_Save' src='${allData.arrival.pixabay}' alt='Picture of ${allData.arrival.at}, ${allData.arrival.specifyPlace}'></div>
-    <div class='arrival_Save'>${allData.arrival.at}, ${allData.arrival.specifyPlace}</div>
-    <button class='delete'>Delete</button>
-    ` 
+    const trips = JSON.parse(localStorage.getItem('tripInfos'));
+    trips.forEach( () => {
+        for (let i = 0; i < tripInfos.length; i++){
+        divs.innerHTML = `
+        <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
+        <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
+        <button class='delete'>Delete</button>
+        `} 
+     })   
     let buttons = document.querySelectorAll('.delete')
-    saves.forEach( () =>{ 
+    saves.forEach( () => { 
     // UNIQUE ID FOR EACH SAVES TRIP
         for (let i = 0; i < saves.length; i++) {
             saves[i].classList.add(`saved_deleted${i + 1}`);
