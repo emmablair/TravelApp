@@ -99,21 +99,6 @@ const addSave = (allData) => {
             // saves[i].appendChild(button).innerHTML = 'Delete'
         }
     }) 
-    buttons.forEach( () => {
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].classList.add(`saved_deleted${i + 1}`);
-            // document.querySelector(`#saved_deleted${i + 1}`).addEventListener('click', (e) => {
-            //     const id = e.currentTarget.getAttribute('id');
-            //     const div = document.querySelectorAll('div');
-            //     console.log(`Delete ${id}`)
-            //     let deleteMe = document.querySelector(`#saved_deleted${i + 1}`)
-            //     deleteMe.remove();
-            //     // if(div.id = (`${id}`)) {
-            //     //     div.remove()
-            //     // }
-            // })
-        }
-    })
     deleteTrip()
 };
 
@@ -124,9 +109,9 @@ const deleteTrip = () => {
             // buttons[i].id = (`saved_deleted${i + 1}`);
             document.querySelector(`.saved_deleted${i + 1}`).addEventListener('click', (e) => {
                 console.log(`Delete saved_deleted${i + 1}`)
-                const deleteMe = document.querySelectorAll(`.saved_deleted${i + 1}`)
+                const deleteMe = document.querySelector(`.saved_deleted${i + 1}`)
                 console.log(deleteMe)
-                // deleteMe.delete();
+                deleteMe.remove();
             })
         }
     })
