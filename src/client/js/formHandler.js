@@ -114,53 +114,47 @@ save()
 
 const updateSavedTrip = (divs) => {
     const trips = JSON.parse(localStorage.getItem('tripInfos'));
+    // const saves = document.querySelectorAll('.trip');
     trips.forEach( () => {
         for (let i = 0; i < trips.length; i++){
         divs.innerHTML = `
         <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
         <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
-        <button class='delete'>Delete</button>
         `} 
-     })  
+    }) 
+    // saves.forEach( () => { 
+    //     // UNIQUE ID FOR EACH SAVES TRIP
+    //     for (let i = 0; i < saves.length; i++) {
+    //         saves[i].classList.add(`saved_deleted${i + 1}`);
+    //     }
+    // })  
 }
 
 const addSave = (tripInfos) => {
     let savedTrip = document.querySelector('#savedTrips');
     let divs = document.createElement('div');
+    let buttons = document.createElement('button')
     savedTrip.appendChild(divs)
     divs.classList.add('trip')
-    const saves = document.querySelectorAll('.trip');
+    // const saves = document.querySelector('.trip');
+    // saves.classList.add('saved_deleted')
     updateSavedTrip(divs);
-    // const trips = JSON.parse(localStorage.getItem('tripInfos'));
-    // trips.forEach( () => {
-    //     for (let i = 0; i < tripInfos.length; i++){
-    //     divs.innerHTML = `
-    //     <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
-    //     <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
-    //     <button class='delete'>Delete</button>
-    //     `} 
-    //  })   
-    let buttons = document.querySelectorAll('.delete')
-    saves.forEach( () => { 
-    // UNIQUE ID FOR EACH SAVES TRIP
-        for (let i = 0; i < saves.length; i++) {
-            saves[i].classList.add(`saved_deleted${i + 1}`);
-            // button[i].classList.add(`deleted${i + 1}`)
-            // saves[i].appendChild(button).innerHTML = 'Delete'
-        }
-    }) 
+    /* creates NEW button each save */
+    divs.appendChild(buttons)
+    buttons.classList.add('delete')
+    buttons.innerHTML = 'Delete'
     deleteTrip(tripInfos)
 };
 
 const deleteTrip = (tripInfos) => {
     const saves = document.querySelectorAll('.trip');
     saves.forEach( () => {
-        for (let i = 0; i < saves.length; i++) {
-            document.querySelector(`.saved_deleted${i + 1}`).addEventListener('click', (e) => {
-                console.log(`Delete saved_deleted${i + 1}`)
-                const deleteMe = document.querySelector(`.saved_deleted${i + 1}`)
+        for (let i = 0; i < saves.length; 0) {
+            document.querySelector(`.delete${i + 1}`).addEventListener('click', (e) => {
+                console.log(`Delete .delete${i + 1}`)
+                const deleteMe = document.querySelector(`.delete${i + 1}`)
                 console.log(deleteMe)
-                deleteMe.remove();
+                deleteMe.parentElement.remove();
                 tripInfos.splice([i], 1);
                 // deletes value & resets localstoage
                 localStorage.tripInfos = JSON.stringify(tripInfos);
