@@ -143,25 +143,43 @@ const addSave = (tripInfos) => {
     divs.appendChild(buttons)
     buttons.classList.add('delete')
     buttons.innerHTML = 'Delete'
-    deleteTrip(tripInfos)
+    deleteTrip(tripInfos, buttons)
 };
 
-const deleteTrip = (tripInfos) => {
-    const saves = document.querySelectorAll('.trip');
-    saves.forEach( () => {
-        for (let i = 0; i < saves.length; 0) {
-            document.querySelector(`.delete${i + 1}`).addEventListener('click', (e) => {
-                console.log(`Delete .delete${i + 1}`)
-                const deleteMe = document.querySelector(`.delete${i + 1}`)
-                console.log(deleteMe)
-                deleteMe.parentElement.remove();
-                tripInfos.splice([i], 1);
-                // deletes value & resets localstoage
-                localStorage.tripInfos = JSON.stringify(tripInfos);
-            })
-        }
+
+const deleteTrip = (tripInfos, buttons) => {
+    buttons.addEventListener('click', () => {
+        console.log('Deleting...')
+        console.log(buttons.parentElement)
+        buttons.parentElement.remove()
+        // const trips = JSON.parse(localStorage.getItem('tripInfos'));
+        // trips.forEach((buttons) => {
+        //     console.log(tripInfos.indexOf(buttons))
+        //     trips.splice(tripInfos.indexOf(buttons), 1);
+        //     localStorage.tripInfos = JSON.stringify(tripInfos);
+        //     // localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
+        // });
+        
     })
 }
+
+
+// const deleteTrip = (tripInfos) => {
+//     const saves = document.querySelectorAll('.trip');
+//     saves.forEach( () => {
+//         for (let i = 0; i < saves.length; 0) {
+//             document.querySelector(`.delete${i + 1}`).addEventListener('click', (e) => {
+//                 console.log(`Delete .delete${i + 1}`)
+//                 const deleteMe = document.querySelector(`.delete${i + 1}`)
+//                 console.log(deleteMe)
+//                 deleteMe.parentElement.remove();
+//                 tripInfos.splice([i], 1);
+//                 // deletes value & resets localstoage
+//                 localStorage.tripInfos = JSON.stringify(tripInfos);
+//             })
+//         }
+//     })
+// }
 
 
 // const deleted = () => {
