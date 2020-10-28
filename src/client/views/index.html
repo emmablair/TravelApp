@@ -18,11 +18,11 @@
                 <label for='Arriving'>Returning</label>
                 <input class='save' id='arriveDate' name='Arriving' type='date'>
             </form>
-            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#exampleModalCenter">
+            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
         </form>
 
         <!-- MODAL START -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade data-target" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -37,12 +37,13 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                  <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Add Trip</button>
+                  <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
                 </div>
               </div>
             </div>
           </div>
           <!-- MODAL END -->
+
         <section>
 
             <!-- <button id='save'>Save</button> -->
