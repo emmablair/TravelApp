@@ -17,62 +17,63 @@ document.querySelector('#arriveDate').value = currentDate; //.valueAsDate withou
 // ::: form Handler Func :::
 const formHandler = async(e) => {
     e.preventDefault();
+
     const departDate = document.querySelector('#departDate').value;
     const arriveDate = document.querySelector('#arriveDate').value;
     const departInput = document.querySelector('#departInput').value;
     const arriveInput = document.querySelector('#arriveInput').value;
 
-    console.log('::: FORM SUBMITTED | TRIPINFO :::')
-/* ::: ALL TRIP INFO | DEPART & ARRIVE ::: */
-    const tripInfo = await fetch('/trip',  {
-        method: 'POST',
-        credentials: 'same-origin',
-        mode: 'cors',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ 
-            depart: departInput,
-            arrive: arriveInput,
-            dateD: departDate,
-            dateA: arriveDate
-         })
-    })
-    .then(res => {
-        const postData = res.json();
-        return postData;
-    })
-    .catch((error) => {
-        console.log('::: ERROR TRIPNFO | client side :::', error);
-    });
-    console.log(tripInfo);
-    console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
+    /* :::IF statment to check if form fields are blank::: */
+    if(departInput === '' || arriveInput === '' || departDate === '' || arriveDate === '') {
+        alert('Please enter a valid location or date.')
+    }else{
+        /* if form fields aren't blank than give modal the data-target ID
+        so that the model drops down after submit (BUT not if fields are empty) */
+        const target = document.querySelector('.data-target');
+        target.id = 'createTrip';
+
+        console.log('::: FORM SUBMITTED | TRIPINFO :::')
+
+    /* ::: ALL TRIP INFO | DEPART & ARRIVE ::: */
+        const tripInfo = await fetch('/trip',  {
+            method: 'POST',
+            credentials: 'same-origin',
+            mode: 'cors',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ 
+                depart: departInput,
+                arrive: arriveInput,
+                dateD: departDate,
+                dateA: arriveDate
+            })
+        })
+        .then(res => {
+            const postData = res.json();
+            return postData;
+        })
+        .catch((error) => {
+            console.log('::: ERROR TRIPNFO | client side :::', error);
+        });
+        console.log(tripInfo);
+        console.log('::: SUCCESSFUL POST | Completed tripInfo :::')
+        /* reset modal target ID back to EMPTY so IF 
+        statment continues to work on multiple trips 
+        at each sumbit click */
+        target.id = '';
+    }
+    
+    // if(tripInfo === 'undefined') {
+    //     alert('Please enter a valid location')
+    // }
     tripUI(tripInfo);
 
 }
 
-// const showTrip = async() => {
-//     const trip = await fetch('/all',  {
-//         method: 'GET',
-//         credentials: 'same-origin',
-//         mode: 'cors',
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//     })
-//     try{
-//         const allData = await trip.json();
-//         console.log(allData)
-//         return allData;
-//     } catch (error) {
-//         console.log('error', error);
-//     }
-//     tripUI(trip);
-// };
-
 const showTripUI = () => {
-    
-}
+
+// }
 
 const store = (tripInfo) => {
     let tripInfos;
@@ -115,7 +116,7 @@ const save = async() => {
     })
     
 };
-// save()
+save()
 
 const updateSavedTrip = (divs) => {
     /* UpdateUI of saved trips with local storage data */
