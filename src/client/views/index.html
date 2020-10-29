@@ -4,65 +4,70 @@
         <meta charset="utf-8">
         <title>Travel App</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/modal.css">
     </head>
-
-    <body> 
-        <img id='pixabay' src=''>
-        <form onsubmit="return formHandler(event)">
-            <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
-            <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
-            <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
-            <form>
-                <label for='Departing'>Departing</label>
-                <input class='save' id='departDate' name='Departing' type='date'>
-                <label for='Arriving'>Returning</label>
-                <input class='save' id='arriveDate' name='Arriving' type='date'>
-            </form>
-            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
-        </form>
-
-        <!-- MODAL START -->
-        <div class="modal fade data-target" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+    <body>
+        <div id='fullContent'>
+            <nav>
+                <div id='nav'>
+                    <div><a href='#body'>Planner</a></div>
+                    <div><a href='#savedTrips'>Trips</a></div>
+                    <div><a href='#footer'>About</a></div>
                 </div>
-                <div class="modal-body">
-                  ...
+            </nav>
+            <section>
+                <div id='body'>
+                    <form onsubmit="return formHandler(event)">
+                        <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
+                        <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
+                        <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
+                        <form>
+                            <label for='Departing'>Departing</label>
+                            <input class='save' id='departDate' name='Departing' type='date'>
+                            <label for='Arriving'>Returning</label>
+                            <input class='save' id='arriveDate' name='Arriving' type='date'>
+                        </form>
+                        <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                    </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                  <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+            </section>
+            <!-- MODAL START -->
+            <section>
+                <div class="modal fade data-target" id ='' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <!-- MODAL END -->
-
-        <section>
-
-            <!-- <button id='save'>Save</button> -->
-            <button id='delete'>delete</button>
-
-                <!-- <input id='save' type='submit' name='' value='Save'> -->
-                <!-- <input id='Save' type='submit' name='' value='Delete' onSubmit="return saveDelete(event)" onClick="return saveDelete(event)"> -->
-
-        </section>
-        <section>
-            <h2>Trips</h2>
-            <div id='savedTrips'>
-                
-                
-            </div>
-        </section>
+            </section>
+            <!-- MODAL END -->
+            <!-- Saved Trips -->
+            <section>
+                <!-- <h2>Trips</h2> -->
+                <div id='savedTrips'></div>
+            </section>
+            <!-- Footer -->
+            <footer>
+                <div id='footer'>About</div>
+            </footer>
+        </div>
+        <!-- Bootstrap Modal Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+        <!-- JS Scripts -->
         <script src='../js/formhandler.js'></script>
     </body>
