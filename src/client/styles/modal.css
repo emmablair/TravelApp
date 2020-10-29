@@ -1,0 +1,48 @@
+body {
+
+}
+
+#fullContent {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'nav'
+    'bdy'
+    'save'
+    'ft';
+    /* use full page 
+    regardless of content  */
+    width: 100vw;
+    min-height: 100vh;
+}
+
+#nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+}
+
+#nav > div {
+    padding: .5em;
+}
+
+#body {
+    grid-area: bdy;
+}
+
+#savedTrips {
+    grid-area: save;
+}
+
+#footer {
+    grid-area: ft;
+    display: inline-block;
+}
+
+#arrivePic_box {
+    /* image */
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: .5vw;
+}
