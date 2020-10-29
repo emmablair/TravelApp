@@ -25,7 +25,7 @@ const formHandler = async(e) => {
 
     /* :::IF statment to check if form fields are blank::: */
     if(departInput === '' || arriveInput === '' || departDate === '' || arriveDate === '') {
-        alert('Please enter a valid location or date.')
+        alert('Please enter valid locations and dates.')
     }else{
         /* if form fields aren't blank than give modal the data-target ID
         so that the model drops down after submit (BUT not if fields are empty) */
@@ -62,18 +62,17 @@ const formHandler = async(e) => {
         statment continues to work on multiple trips 
         at each sumbit click */
         target.id = '';
+        tripUI(tripInfo);
     }
-    
-    // if(tripInfo === 'undefined') {
-    //     alert('Please enter a valid location')
-    // }
-    tripUI(tripInfo);
-
 }
 
-const showTripUI = () => {
-
-// }
+const tripUI = (tripInfo) => {
+    let title = document.querySelector('.modal-title');
+    let pic = document.querySelector('#arrivePic');
+    title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
+    pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
+    pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
+}
 
 const store = (tripInfo) => {
     let tripInfos;
