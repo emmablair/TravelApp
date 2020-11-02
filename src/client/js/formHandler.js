@@ -91,7 +91,7 @@ const modalArea = document.querySelector('.modalArea');
 // const closeModal = document.querySelector('.closeModal');
 const hide = document.querySelector('.hide');
 hide.addEventListener('click', () => {
-    modalArea.classList.toggle('closeModal')
+    modalArea.style.display = 'none';
     show.classList.add('data-target')
 })
 
@@ -116,6 +116,7 @@ const store = (tripInfo) => {
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
         modalArea.style.display = 'none';
+        show.classList.add('data-target')
         console.log('CLICK')
         const trip = await fetch('/all',  {
             method: 'GET',
