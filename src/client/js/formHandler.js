@@ -29,8 +29,7 @@ const formHandler = async(e) => {
     }else{
         /* if form fields aren't blank than give modal the data-target ID
         so that the model drops down after submit (BUT not if fields are empty) */
-        const target = document.querySelector('.data-target');
-        target.id = 'createTrip';
+        
 
         console.log('::: FORM SUBMITTED | TRIPINFO :::')
 
@@ -61,18 +60,40 @@ const formHandler = async(e) => {
         /* reset modal target ID back to EMPTY so IF 
         statment continues to work on multiple trips 
         at each sumbit click */
-        target.id = '';
+        // target.id = '';
         tripUI(tripInfo);
     }
 }
 
+// if click save or X then hide modal by display: none
+// const hideModal = () => {
+//     let
+//     if(||)
+// }
+
+
+
 const tripUI = (tripInfo) => {
+    const show = document.querySelector('#show');
+    const target = document.querySelector('.data-target');
+    modalArea.style.display = 'inline-block';
+    show.classList.toggle('data-target')
+
+
     let title = document.querySelector('.modal-title');
     let pic = document.querySelector('#arrivePic');
     title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
 }
+
+const modalArea = document.querySelector('.modalArea');
+// const closeModal = document.querySelector('.closeModal');
+const hide = document.querySelector('.hide');
+hide.addEventListener('click', () => {
+    modalArea.classList.toggle('closeModal')
+    show.classList.add('data-target')
+})
 
 const store = (tripInfo) => {
     let tripInfos;
@@ -94,6 +115,7 @@ const store = (tripInfo) => {
 
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
+        modalArea.style.display = 'none';
         console.log('CLICK')
         const trip = await fetch('/all',  {
             method: 'GET',
