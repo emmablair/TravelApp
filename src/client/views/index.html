@@ -7,16 +7,16 @@
         <link rel="stylesheet" href="styles/modal.css">
     </head>
     <body>
-        <div id='fullContent'>
-            <nav>
-                <div id='nav'>
+        <!-- <main id='main'> -->
+            <nav id='nav'>
+                <!-- <div id='nav'> -->
                     <div><a href='#body'>Planner</a></div>
                     <div><a href='#savedTrips'>Trips</a></div>
                     <div><a href='#footer'>About</a></div>
-                </div>
+                <!-- </div> -->
             </nav>
-            <section>
-                <div id='body'>
+            <section id='body'>
+                <!-- <div id='body'> -->
                     <form onsubmit="return formHandler(event)">
                         <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
                         <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
@@ -27,43 +27,51 @@
                             <label for='Arriving'>Returning</label>
                             <input class='save' id='arriveDate' name='Arriving' type='date'>
                         </form>
-                        <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                        <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target=".data-target">
                     </form>
-                </div>
+                <!-- </div> -->
             </section>
+            <!-- Saved Trips -->
+            <section id='savedTrips'>
+                <!-- <h2>Trips</h2> -->
+                <!-- <div id='savedTrips'></div> -->
+            </section>
+        <!-- </main> -->
+            <!-- Footer -->
+            <footer id='footer'>
+                <div>About</div>
+            </footer>
             <!-- MODAL START -->
-            <section>
-                <div class="modal fade data-target" id ='' tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <section class='modalArea'>
+                <div class="modal fade data-target" id ='show' tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                            <h5 class="modal-title"></h5>
+                            <!-- <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button> -->
                         </div>
                         <div class="modal-body">
                             <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
+                            <div id='depart'>
+                                <div id='dayD'></div>
+                                <div id='weatherD'></div>
+                            </div>
+                            <div id='arrive'>
+                                <div id='dayD'></div>
+                                <div id='weatherA'></div>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+                            <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+                            <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                     </div>
                 </div>
             </section>
             <!-- MODAL END -->
-            <!-- Saved Trips -->
-            <section>
-                <!-- <h2>Trips</h2> -->
-                <div id='savedTrips'></div>
-            </section>
-            <!-- Footer -->
-            <footer>
-                <div id='footer'>About</div>
-            </footer>
-        </div>
         <!-- Bootstrap Modal Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
