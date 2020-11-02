@@ -29,7 +29,10 @@ const formHandler = async(e) => {
     }else{
         /* if form fields aren't blank than give modal the data-target ID
         so that the model drops down after submit (BUT not if fields are empty) */
-        
+        // const modalArea = document.querySelector('#modalArea');
+        const target = document.querySelector('.data-target');
+        // modalArea.style.display = 'inline-block';
+        target.id = 'createTrip';
 
         console.log('::: FORM SUBMITTED | TRIPINFO :::')
 
@@ -60,40 +63,49 @@ const formHandler = async(e) => {
         /* reset modal target ID back to EMPTY so IF 
         statment continues to work on multiple trips 
         at each sumbit click */
-        // target.id = '';
+        target.id = '';
         tripUI(tripInfo);
     }
 }
 
-// if click save or X then hide modal by display: none
-// const hideModal = () => {
-//     let
-//     if(||)
+// const tripUI = (tripInfo) => {
+//     const show = document.querySelector('#show');
+//     const target = document.querySelector('.data-target');
+//     modalArea.style.display = 'inline-block';
+//     show.classList.toggle('data-target')
+
+
+//     let title = document.querySelector('.modal-title');
+//     let pic = document.querySelector('#arrivePic');
+//     title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
+//     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
+//     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
 // }
 
+// const modalArea = document.querySelector('.modalArea');
+// // const closeModal = document.querySelector('.closeModal');
+// const hide = document.querySelector('.hide');
+// hide.addEventListener('click', () => {
+//     modalArea.style.display = 'none';
+//     show.classList.add('data-target')
+// })
 
+// const modalArea = document.querySelector('.modalArea');
+// // const closeModal = document.querySelector('.closeModal');
+// const hide = document.querySelector('.hide');
+// hide.addEventListener('click', () => {
+//     // hide modal from display
+//     modalArea.style.display = 'none';
+//     // show.classList.add('data-target')
+// })
 
 const tripUI = (tripInfo) => {
-    const show = document.querySelector('#show');
-    const target = document.querySelector('.data-target');
-    modalArea.style.display = 'inline-block';
-    show.classList.toggle('data-target')
-
-
     let title = document.querySelector('.modal-title');
     let pic = document.querySelector('#arrivePic');
     title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
 }
-
-const modalArea = document.querySelector('.modalArea');
-// const closeModal = document.querySelector('.closeModal');
-const hide = document.querySelector('.hide');
-hide.addEventListener('click', () => {
-    modalArea.style.display = 'none';
-    show.classList.add('data-target')
-})
 
 const store = (tripInfo) => {
     let tripInfos;
@@ -112,12 +124,11 @@ const store = (tripInfo) => {
 // const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
 // console.log(tripInfos[0])
 
-
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
-        modalArea.style.display = 'none';
-        show.classList.add('data-target')
         console.log('CLICK')
+        // hide modal from display
+        // modalArea.style.display = 'none';
         const trip = await fetch('/all',  {
             method: 'GET',
             credentials: 'same-origin',
@@ -135,8 +146,7 @@ const save = async() => {
         } catch (error) {
             console.log('error', error);
         }
-    })
-    
+    })  
 };
 save()
 
@@ -164,25 +174,56 @@ const addSave = (tripInfos) => {
     /* creates NEW button each save */
     divs.appendChild(buttons)
     buttons.classList.add('delete')
+    buttons.id = 'saved'
     buttons.innerHTML = 'Delete'
     deleteTrip(tripInfos, buttons)
 };
 
 
+// const deleteTrip = (tripInfos, buttons) => {
+//     buttons.addEventListener('click', () => {
+//         console.log('Deleting...')
+//         console.log(buttons.parentElement)
+//         buttons.parentElement.remove()
+
+//         /* :::ISSUE::: DELETE LOCALSTORAGE */
+//         // const trips = JSON.parse(localStorage.getItem('tripInfos'));
+//         // for(const trip of trips) {
+//         //     for (let i = 0; i < trip.length; i++){
+//         //         console.log([i])
+//         //         tripInfos.splice([i], 1);
+//         //         localStorage.tripInfos = JSON.stringify(tripInfos);
+//         //     } 
+//         // }
+
+//         // const trips = JSON.parse(localStorage.getItem('tripInfos'));
+//         // for(const trip of trips) {
+//         //         console.log([i])
+//         //         tripInfos.splice([i], 1);
+//         //         localStorage.tripInfos = JSON.stringify(tripInfos);
+//         // }
+//     })
+// }
+
 const deleteTrip = (tripInfos, buttons) => {
-    buttons.addEventListener('click', () => {
+    buttons.addEventListener('click', (e) => {
         console.log('Deleting...')
-        console.log(buttons.parentElement)
-        buttons.parentElement.remove()
+        // console.log(buttons.parentElement)
+        // buttons.parentElement.remove()
 
         /* :::ISSUE::: DELETE LOCALSTORAGE */
-        const trips = JSON.parse(localStorage.getItem('tripInfos'));
-        for(const trip of trips) {
-            for (let i = 0; i < trips.length; i++){
-                console.log([i])
-                trips.splice(i, 1);
+
+        
+        let tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+        tripInfos.forEach((trip) => {
+            if(e.target.id === 'saved') {
+                console.log('hello')
+                e.target.id = 'deleted';
+                e.target.parentElement.remove();
+                // e.target.parentElement.innerHTML = 'HELLO';
+                tripInfos.splice(tripInfos.indexOf(e.target), 1);
                 localStorage.tripInfos = JSON.stringify(tripInfos);
-            } 
-        }
+            }
+        })
     })
 }
