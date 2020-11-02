@@ -28,13 +28,17 @@ body {
     display: inline-block;
 }
 
-.modalArea {
+/* .modalArea {
     display: none;
+} */
+
+#createTrip {
+    
 }
 
-.modalArea.closeModal {
+/* .modalArea.closeModal {
     display: none;
-}
+} */
 
 #savedTrips {
     grid-area: save;
