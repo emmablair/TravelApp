@@ -1,13 +1,10 @@
 body {
-
-}
-
-#fullContent {
     display: grid;
     grid-template-rows: auto;
     grid-template-areas:
     'nav'
     'bdy'
+    /* 'bdy' */
     'save'
     'ft';
     /* use full page 
@@ -28,6 +25,15 @@ body {
 
 #body {
     grid-area: bdy;
+    display: inline-block;
+}
+
+.modalArea {
+    display: none;
+}
+
+.modalArea.closeModal {
+    display: none;
 }
 
 #savedTrips {
@@ -39,7 +45,7 @@ body {
     display: inline-block;
 }
 
-#arrivePic_box {
+#arrivePic {
     /* image */
     display:inline-block;
     width: 100%;
