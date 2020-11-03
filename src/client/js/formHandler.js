@@ -31,7 +31,6 @@ const formHandler = async(e) => {
         so that the model drops down after submit (BUT not if fields are empty) */
         // const modalArea = document.querySelector('#modalArea');
         const target = document.querySelector('.data-target');
-        // modalArea.style.display = 'inline-block';
         target.id = 'createTrip';
 
         console.log('::: FORM SUBMITTED | TRIPINFO :::')
@@ -120,10 +119,6 @@ const store = (tripInfo) => {
     console.log(tripInfo.arrival)
 }
 
-
-// const tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-// console.log(tripInfos[0])
-
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
         console.log('CLICK')
@@ -155,10 +150,19 @@ const updateSavedTrip = (divs) => {
     const trips = JSON.parse(localStorage.getItem('tripInfos'));
     trips.forEach( () => {
         for (let i = 0; i < trips.length; i++){
+        // divs.innerHTML = `
+        // <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}'></div>
+        // <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.country}</div>
+        // `
         divs.innerHTML = `
-        <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}'></div>
-        <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.specifyPlace}</div>
-        `} 
+        <div class="saveCard">
+          <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}">
+          <details class="savePlace">
+            <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.country}</summary>
+            <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
+          </details>
+        </div>`
+        } 
     })  
 }
 
@@ -168,59 +172,30 @@ const addSave = (tripInfos) => {
     let buttons = document.createElement('button')
     savedTrip.appendChild(divs)
     divs.classList.add('trip')
+    // divs.classList.add('card-deck')
     const saves = document.querySelector('.trip');
-    // saves.classList.add('saved_deleted')
     updateSavedTrip(divs);
     /* creates NEW button each save */
-    divs.appendChild(buttons)
+    // divs.appendChild(buttons)
+    divs.lastChild.appendChild(buttons);
     buttons.classList.add('delete')
+    // buttons.classList.add('card-footer')
+    buttons.classList.add('btn')
     buttons.id = 'saved'
     buttons.innerHTML = 'Delete'
     deleteTrip(tripInfos, buttons)
 };
 
-
-// const deleteTrip = (tripInfos, buttons) => {
-//     buttons.addEventListener('click', () => {
-//         console.log('Deleting...')
-//         console.log(buttons.parentElement)
-//         buttons.parentElement.remove()
-
-//         /* :::ISSUE::: DELETE LOCALSTORAGE */
-//         // const trips = JSON.parse(localStorage.getItem('tripInfos'));
-//         // for(const trip of trips) {
-//         //     for (let i = 0; i < trip.length; i++){
-//         //         console.log([i])
-//         //         tripInfos.splice([i], 1);
-//         //         localStorage.tripInfos = JSON.stringify(tripInfos);
-//         //     } 
-//         // }
-
-//         // const trips = JSON.parse(localStorage.getItem('tripInfos'));
-//         // for(const trip of trips) {
-//         //         console.log([i])
-//         //         tripInfos.splice([i], 1);
-//         //         localStorage.tripInfos = JSON.stringify(tripInfos);
-//         // }
-//     })
-// }
-
+/* ::: Delete Trip | Display and LocalStorage ::: */
 const deleteTrip = (tripInfos, buttons) => {
     buttons.addEventListener('click', (e) => {
         console.log('Deleting...')
-        // console.log(buttons.parentElement)
-        // buttons.parentElement.remove()
-
-        /* :::ISSUE::: DELETE LOCALSTORAGE */
-
-        
         let tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
         tripInfos.forEach((trip) => {
             if(e.target.id === 'saved') {
-                console.log('hello')
+                console.log(`Deleted`)
                 e.target.id = 'deleted';
                 e.target.parentElement.remove();
-                // e.target.parentElement.innerHTML = 'HELLO';
                 tripInfos.splice(tripInfos.indexOf(e.target), 1);
                 localStorage.tripInfos = JSON.stringify(tripInfos);
             }
