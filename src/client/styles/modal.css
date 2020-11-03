@@ -51,8 +51,67 @@ body {
 
 #arrivePic {
     /* image */
-    display:inline-block;
+    display: inline-block;
     width: 100%;
     height: 100%;
     border-radius: .5vw;
+}
+
+.btn {
+    color: white;
+    background-color: rgb(93, 201, 50);
+    border-color: rgb(93, 201, 50);
+}
+
+.btn:hover {
+    /* color: black; */
+    background-color: rgb(14, 133, 14);
+    border-color: rgb(14, 133, 14);
+}
+
+/* close button */
+#savedTrips {
+    display: flex;
+    margin: 2em;
+}
+
+.btn.hide {
+    /* color: black; */
+    background-color: rgb(126, 126, 126);
+    border-color: rgb(126, 126, 126);
+}
+
+.btn.delete {
+    width: 100%;
+}
+
+.saveImg {
+    width: 15vw;
+    height: 10vw;
+    object-fit: cover;
+}
+
+/* .trip {
+    justify-: center;
+    align-self: center;
+} */
+.saveCard {
+    border-color: grey;
+    border-radius: .5em;
+    margin: 1em;
+    transition: transform .2s;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+.saveCard:hover {
+    transform: scale(1.05)
+}
+
+/* form */
+#form {
+    display: inline-block;
+    justify-self: center;
+    align-self: center;
 }
