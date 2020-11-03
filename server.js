@@ -2,7 +2,7 @@
 const projectData = {
     departure: {
         from: '',
-        specifyPlace: '',
+        country: '',
         day: '',
         lat: '',
         lng: '',
@@ -12,7 +12,7 @@ const projectData = {
     },
     arrival: {
         at: '',
-        specifyPlace: '',
+        country: '',
         day: '',
         lat: '',
         lng: '',
@@ -126,7 +126,7 @@ const pixKey = process.env.PIXABAY_KEY;
 
 const pixArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&per_page=3&category=travel&image_type=photo`;
-    let url = `${baseURL}${key}&q=${projectData.arrival.at}+${projectData.arrival.specifyPlace}${urlSettings}`;
+    let url = `${baseURL}${key}&q=${projectData.arrival.at}+${projectData.arrival.country}${urlSettings}`;
     console.log(url);
     let res = await fetch(url);
     try {
@@ -178,13 +178,13 @@ app.post('/trip', async(req, res) => {
     projectData.departure.from = departGeo.geonames[0].toponymName;
     projectData.departure.lat = departGeo.geonames[0].lat;
     projectData.departure.lng = departGeo.geonames[0].lng;
-    projectData.departure.specifyPlace = departGeo.geonames[0].adminName1;
+    projectData.departure.country = departGeo.geonames[0].countryName;
 
     let arriveGeo = await geoNameArrive(geoURL, geoKey, arriveInput)
     projectData.arrival.at = arriveGeo.geonames[0].toponymName;
     projectData.arrival.lat = arriveGeo.geonames[0].lat;
     projectData.arrival.lng = arriveGeo.geonames[0].lng;
-    projectData.arrival.specifyPlace = arriveGeo.geonames[0].adminName1;
+    projectData.arrival.country = arriveGeo.geonames[0].countryName;
 
     let weatherD = await weatherDepart(weatherURL, weatherKey)
     projectData.departure.temp = weatherD.data[departForcast].temp;
@@ -193,7 +193,7 @@ app.post('/trip', async(req, res) => {
     let weatherA = await weatherArrive(weatherURL, weatherKey)
     projectData.arrival.temp = weatherA.data[arriveForcast].temp;
     projectData.arrival.icon = weatherA.data[arriveForcast].weather.icon;
-    projectData.arrival.cloud = weatherD.data[arriveForcast].weather.description;
+    projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
 
     let pixabayA = await pixArrive(pixURL, pixKey);
     projectData.arrival.pixabay = pixabayA.hits[0].largeImageURL;
