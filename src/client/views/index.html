@@ -16,7 +16,7 @@
                 <!-- </div> -->
             </nav>
             <section id='body'>
-                <!-- <div id='body'> -->
+                <div id='form'>
                     <form onsubmit="return formHandler(event)">
                         <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
                         <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
@@ -29,10 +29,11 @@
                         </form>
                         <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
                     </form>
-                <!-- </div> -->
+                </div>
             </section>
             <!-- Saved Trips -->
-            <section id='savedTrips'>
+            <section>
+                <div id='savedTrips'></div>
                 <!-- <h2>Trips</h2> -->
                 <!-- <div id='savedTrips'></div> -->
             </section>
