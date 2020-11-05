@@ -1,3 +1,4 @@
+/* GENERAL */
 body {
     display: grid;
     grid-template-rows: auto;
@@ -49,12 +50,46 @@ body {
     display: inline-block;
 }
 
+/* MODAL */
+.modal-content {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas:
+    'pic info'
+    'pic info'
+    'pic info'
+}
+
+#info {
+    grid-area: info;
+}
+
+#modal-container {
+    grid-area: pic;
+    position: relative;
+    text-align: center;
+    /* color: white; */
+}
+
+.modal-title {
+    display: inline-block;
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    color: rgba(255, 255, 255, 0.815);
+    font-size: 2em;
+    background-color: rgb(93, 201, 50);
+    width: 100%;
+    font-family: 'Sora', sans-serif;
+}
+
 #arrivePic {
     /* image */
     display: inline-block;
     width: 100%;
     height: 100%;
-    border-radius: .5vw;
+    /* border-radius: .5vw; */
 }
 
 .btn {
@@ -111,7 +146,72 @@ body {
 
 /* form */
 #form {
-    display: inline-block;
+    display: grid;
+    grid-template-areas: 
+        'place'
+        'date'
+        'submit';
+    justify-content: center;
+    align-content: center;
+}
+
+#place {
+    grid-area: place;
+}
+
+#place > .save {
+    /* width: 100%;
+    border-color: none;
+    border-radius: .3em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+    margin: .5em;
+    border: 0;
+    border-color: none */
+}
+
+.inputContainer {
+    width: 100%;
+    border-color: none;
+    border-radius: .3em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+    margin: 1em;
+    padding-left: .5em;
+}
+
+input[type='text'] {
+    font-size: 14pt;
+    padding: .4em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border: 0;
+    width: 90%;
+
+}
+
+#date {
+    grid-area: date;
+}
+
+#submitForm {
+    grid-area: submit;
     justify-self: center;
     align-self: center;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: rgb(219, 171, 99);
+    margin-right: .5em;
+    margin-left: .5em;
+}
+
+/* fontAwsome */
+.fas {
+    font-size: 18pt;
+    text-align: center;
+}
+
+.fa-search {
+    font-size: 15pt;
 }
