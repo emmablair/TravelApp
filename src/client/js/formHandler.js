@@ -101,7 +101,7 @@ const formHandler = async(e) => {
 const tripUI = (tripInfo) => {
     let title = document.querySelector('.modal-title');
     let pic = document.querySelector('#arrivePic');
-    title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
+    title.innerHTML = `${tripInfo.departure.from} <i class="fas fa-plane"></i> ${tripInfo.arrival.at}`
     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
 }
@@ -151,14 +151,18 @@ const updateSavedTrip = (divs) => {
     trips.forEach( () => {
         for (let i = 0; i < trips.length; i++){
         // divs.innerHTML = `
-        // <div class='picBox_Save'><img class='pic_Save' src='${trips[i].arrival.pixabay}' alt='Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}'></div>
-        // <div class='arrival_Save'>${trips[i].arrival.at}, ${trips[i].arrival.country}</div>
-        // `
+        // <div class="saveCard">
+        //   <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}">
+        //   <details class="savePlace">
+        //     <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.country}</summary>
+        //     <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
+        //   </details>
+        // </div>`
         divs.innerHTML = `
         <div class="saveCard">
-          <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}">
+          
           <details class="savePlace">
-            <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.country}</summary>
+            <summary class="saveTitle"><img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}"></summary>
             <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
           </details>
         </div>`
@@ -182,7 +186,7 @@ const addSave = (tripInfos) => {
     // buttons.classList.add('card-footer')
     buttons.classList.add('btn')
     buttons.id = 'saved'
-    buttons.innerHTML = 'Delete'
+    buttons.innerHTML = 'Cancel Trip'
     deleteTrip(tripInfos, buttons)
 };
 
