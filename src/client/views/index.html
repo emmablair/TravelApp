@@ -3,8 +3,18 @@
     <head>
         <meta charset="utf-8">
         <title>Travel App</title>
+        <!-- BootStrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/d338b0f189.js" crossorigin="anonymous"></script>
+        <!-- fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet"> 
+        <!-- Styles -->
         <link rel="stylesheet" href="styles/modal.css">
+        <link rel="stylesheet" href="styles/icons.css">
+        <link rel="stylesheet" href="styles/form.css">
+        <link rel="stylesheet" href="styles/index.css">
     </head>
     <body>
         <!-- <main id='main'> -->
@@ -18,16 +28,29 @@
             <section id='body'>
                 <div id='form'>
                     <form onsubmit="return formHandler(event)">
-                        <input class='save' id='departInput' type='text' value='' placeholder='Departure City'>
-                        <input class='save' id='arriveInput' type='text' value='' placeholder='Arrival City'>
+                        <div id='place'>
+                            <div><h2>Go on an adventure...</h2></div>
+                            <div class='inputContainer'>
+                                <i class="fas fa-search"></i>
+                                <input class='save' id='arriveInput' type='text' value='' placeholder='Headed to?'>
+                            </div>
+                            <div class='inputContainer'>
+                                <i class="fas fa-search"></i>
+                                <input class='save' id='departInput' type='text' value='' placeholder='Leaving from?'>
+                            </div>
+                        </div>
                         <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
-                        <form>
-                            <label for='Departing'>Departing</label>
-                            <input class='save' id='departDate' name='Departing' type='date'>
-                            <label for='Arriving'>Returning</label>
-                            <input class='save' id='arriveDate' name='Arriving' type='date'>
-                        </form>
-                        <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                        <div id='date'>
+                            <form>
+                                <label for='Departing'>Departing</label>
+                                <input class='save' id='departDate' name='Departing' type='date'>
+                                <label for='Arriving'>Returning</label>
+                                <input class='save' id='arriveDate' name='Arriving' type='date'>
+                            </form>
+                        </div>
+                        <div id='submitForm'>
+                            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                        </div>
                     </form>
                 </div>
             </section>
@@ -45,29 +68,34 @@
             <!-- MODAL START -->
             <!-- <section id='modalArea'> -->
                 <div class="modal fade data-target" id ='' tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title"></h5>
+                        <!-- <div class="modal-header"> -->
+                            <!-- <h5 class="modal-title"></h5> -->
                             <!-- <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button> -->
-                        </div>
-                        <div class="modal-body">
-                            <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
-                            <div id='depart'>
-                                <div id='dayD'></div>
-                                <div id='weatherD'></div>
+                        <!-- </div> -->
+                        <!-- <div class="modal-body"> -->
+                            <div id='modal-container'>
+                                <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
+                                <h5 class="modal-title"></h5>
                             </div>
-                            <div id='arrive'>
-                                <div id='dayD'></div>
-                                <div id='weatherA'></div>
+                            <div id='info'>
+                                <div id='depart'>
+                                    <div id='dayD'></div>
+                                    <div id='weatherD'></div>
+                                </div>
+                                <div id='arrive'>
+                                    <div id='dayD'></div>
+                                    <div id='weatherA'></div>
+                                </div>
+                            <!-- </div> -->
+                                <div class="modal-footer">
+                                    <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+                                    <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
-                            <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
                     </div>
                 </div>
