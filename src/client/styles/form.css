@@ -1,0 +1,61 @@
+/* form */
+#form {
+    display: grid;
+    grid-template-areas: 
+        'place'
+        'date'
+        'submit';
+    justify-content: center;
+    align-content: center;
+}
+
+#place {
+    grid-area: place;
+}
+
+#place > .save {
+    /* width: 100%;
+    border-color: none;
+    border-radius: .3em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+    margin: .5em;
+    border: 0;
+    border-color: none */
+}
+
+.inputContainer {
+    width: 100%;
+    border-color: none;
+    border-radius: .3em;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
+    margin: 1em;
+    padding-left: .5em;
+}
+
+input[type='text'] {
+    font-size: 14pt;
+    padding: .4em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border: 0;
+    width: 90%;
+
+}
+
+#date {
+    grid-area: date;
+}
+
+#submitForm {
+    grid-area: submit;
+    justify-self: center;
+    align-self: center;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: rgb(219, 171, 99);
+    margin-right: .5em;
+    margin-left: .5em;
+}
