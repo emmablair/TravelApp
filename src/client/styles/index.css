@@ -1,0 +1,51 @@
+/* GENERAL */
+body {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'nav'
+    'bdy'
+    /* 'bdy' */
+    'save'
+    'ft';
+    /* use full page 
+    regardless of content  */
+    width: 100vw;
+    min-height: 100vh;
+}
+
+#nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+}
+
+#nav > div {
+    padding: .5em;
+}
+
+#body {
+    grid-area: bdy;
+    display: inline-block;
+}
+
+/* .modalArea {
+    display: none;
+} */
+
+#createTrip {
+    
+}
+
+/* .modalArea.closeModal {
+    display: none;
+} */
+
+#savedTrips {
+    grid-area: save;
+}
+
+#footer {
+    grid-area: ft;
+    display: inline-block;
+}
