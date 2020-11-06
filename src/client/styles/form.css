@@ -7,6 +7,7 @@
         'submit';
     justify-content: center;
     align-content: center;
+    margin: .5em;
 }
 
 #place {
@@ -24,17 +25,19 @@
 }
 
 .inputContainer {
-    width: 100%;
+    /* width: 100%; */
     border-color: none;
     border-radius: .3em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
-    margin: 1em;
+    /* margin: 1em; */
+    margin-bottom: 1em;
     padding-left: .5em;
+
 }
 
 input[type='text'] {
     font-size: 14pt;
-    padding: .4em;
+    padding-left: .5em;
     padding-top: .5em;
     padding-bottom: .5em;
     border: 0;
@@ -44,18 +47,37 @@ input[type='text'] {
 
 #date {
     grid-area: date;
+    /* margin: 1em; */
+
+}
+
+#date > label {
+    font-family: 'Montserrat', sans-serif;
+    color: rgb(255, 138, 102);
+    font-weight: 700;
 }
 
 #submitForm {
     grid-area: submit;
     justify-self: center;
     align-self: center;
+    width: 100%;
+    /* margin: 1em; */
+}
+
+input[type='submit'] {
+    width: 100%;
+}
+
+#submitForm > input {
+    /* width: 100%; */
 }
 
 h2 {
     font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
     font-weight: 700;
-    color: rgb(219, 171, 99);
-    margin-right: .5em;
-    margin-left: .5em;
+    color: rgb(255, 138, 102);
+    /* margin-right: .5em;
+    margin-left: .5em; */
 }
