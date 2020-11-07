@@ -1,9 +1,18 @@
 /* fontAwsome */
-.fas {
+
+.fa-plane {
+    /* modal plane */
     font-size: 18pt;
     text-align: center;
 }
 
 .fa-search {
+    /* search icon */
     font-size: 15pt;
+}
+
+.dateContainer > .fas {
+    /* depart arrive plane */
+    font-size: 20pt;
+    color: rgb(255, 138, 102);
 }
