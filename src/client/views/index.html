@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Travel App</title>
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- BootStrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- font awesome -->
@@ -17,7 +19,6 @@
         <link rel="stylesheet" href="styles/index.css">
     </head>
     <body>
-        <!-- <main id='main'> -->
             <nav id='nav'>
                 <!-- <div id='nav'> -->
                     <div><a href='#body'>Planner</a></div>
@@ -29,7 +30,7 @@
                 <div id='form'>
                     <form onsubmit="return formHandler(event)">
                         <div id='place'>
-                            <div><h2>Let's go on an adventure...</h2></div>
+                            <div><h2>Indulge your Wonderlust.</h2></div>
                             <div class='inputContainer'>
                                 <i class="fas fa-search"></i>
                                 <input class='save' id='arriveInput' type='text' value='' placeholder='Headed to?'>
@@ -39,17 +40,20 @@
                                 <input class='save' id='departInput' type='text' value='' placeholder='Leaving from?'>
                             </div>
                         </div>
-                        <!-- <input id='dateInput' type='text' value='' placeholder=''> -->
                         <div id='date'>
                             <form>
-                                <label for='Departing'>Departing</label>
-                                <input class='save' id='departDate' name='Departing' type='date'>
-                                <label for='Arriving'>Returning</label>
-                                <input class='save' id='arriveDate' name='Arriving' type='date'>
+                                <div class='dateContainer' data-toggle="tooltip" data-placement="left" title="Depart Date">
+                                    <i class="fas fa-plane-departure"></i>
+                                    <input class='save' id='departDate' name='Departing' type='date'>
+                                </div>
+                                <div class='dateContainer' data-toggle="tooltip" data-placement="left" title="Reture Date">
+                                    <i class="fas fa-plane-arrival"></i>
+                                    <input class='save' id='arriveDate' name='Arriving' type='date'>
+                                </div>
                             </form>
                         </div>
                         <div id='submitForm'>
-                            <input id='submit' type='submit' name='' value='Submit' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                            <input id='submit' type='submit' name='' value='Start the Adventure' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
                         </div>
                     </form>
                 </div>
@@ -60,7 +64,6 @@
                 <!-- <h2>Trips</h2> -->
                 <!-- <div id='savedTrips'></div> -->
             </section>
-        <!-- </main> -->
             <!-- Footer -->
             <footer id='footer'>
                 <div>About</div>
@@ -92,7 +95,7 @@
                                 </div>
                             <!-- </div> -->
                                 <div class="modal-footer">
-                                    <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Save Trip</button>
+                                    <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Create Trip</button>
                                     <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -106,5 +109,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!-- JS Scripts -->
-        <script src='../js/formhandler.js'></script>
+        <script src='../js/formHandler.js'></script>
     </body>
