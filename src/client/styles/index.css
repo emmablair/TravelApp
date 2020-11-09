@@ -12,6 +12,20 @@ body {
     regardless of content  */
     width: 100vw;
     min-height: 100vh;
+    background-image: url('../images/travel_road.jpg');
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; */
+    background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100%; 
+  width: 100%;
+  color: white;
+  text-align: center;
+  display: table;
 }
 
 #nav {
