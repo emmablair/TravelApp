@@ -1,3 +1,4 @@
+/* TOOLTIP for date section */
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
@@ -17,6 +18,14 @@ const currentDate = new Date().toDateInputValue();
 document.querySelector('#departDate').value = currentDate; //.valueAsDate without timezone also works
 document.querySelector('#arriveDate').value = currentDate; //.valueAsDate without timezone also works
 
+/* ::: date diffence for weather Forcast ::: */
+const dateDifference = (date1, date2) => {
+    dt1 = new Date(date1);
+    dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+
+
 
 // ::: form Handler Func :::
 const formHandler = async(e) => {
@@ -24,6 +33,12 @@ const formHandler = async(e) => {
 
     const departDate = document.querySelector('#departDate').value;
     const arriveDate = document.querySelector('#arriveDate').value;
+    console.log(departDate)
+    console.log(arriveDate)
+    const dForcast = dateDifference(currentDate, departDate);
+    const aForcast = dateDifference(currentDate, arriveDate);
+    console.log(dForcast)
+    console.log(aForcast)
     const departInput = document.querySelector('#departInput').value;
     const arriveInput = document.querySelector('#arriveInput').value;
 
@@ -51,7 +66,9 @@ const formHandler = async(e) => {
                 depart: departInput,
                 arrive: arriveInput,
                 dateD: departDate,
-                dateA: arriveDate
+                dateA: arriveDate,
+                forcastA: aForcast,
+                forcastD: dForcast
             })
         })
         .then(res => {

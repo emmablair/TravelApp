@@ -140,34 +140,35 @@ const pixArrive = async (baseURL, key) => {
 
 app.post('/trip', async(req, res) => {
 
-    let departDate = req.body.dateD;
-    let arriveDate = req.body.dateA;
+    const departDate = req.body.dateD;
+    const arriveDate = req.body.dateA;
+    
 
-    // /* ::: Current date in date input field ::: */
-    Date.prototype.toDateInputValue = (function() {
-        // allow correct timezone
-        var local = new Date(this);
-        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-        return local.toJSON().slice(0,10);
-    });
-    /* ::: apply current date ::: */
-    const currentDate = new Date().toDateInputValue();
-    departDate = currentDate; //.valueAsDate without timezone also works
-    arriveDate = currentDate; //.valueAsDate without timezone also works
+    // // /* ::: Current date in date input field ::: */
+    // Date.prototype.toDateInputValue = (function() {
+    //     // allow correct timezone
+    //     var local = new Date(this);
+    //     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    //     return local.toJSON().slice(0,10);
+    // });
+    // /* ::: apply current date ::: */
+    // const currentDate = new Date().toDateInputValue();
+    // departDate = currentDate; //.valueAsDate without timezone also works
+    // arriveDate = currentDate; //.valueAsDate without timezone also works
 
-    /* ::: date diffence for weather Forcast ::: */
-    const dateDifference = (date1, date2) => {
-        dt1 = new Date(date1);
-        dt2 = new Date(date2);
-        return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
-    }
+    // /* ::: date diffence for weather Forcast ::: */
+    // const dateDifference = (date1, date2) => {
+    //     dt1 = new Date(date1);
+    //     dt2 = new Date(date2);
+    //     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    // }
 
 
     const departInput = req.body.depart;
     const arriveInput = req.body.arrive;
 
-    const departForcast = dateDifference(currentDate, departDate);
-    const arriveForcast = dateDifference(currentDate, arriveDate);
+    const departForcast = req.body.forcastD;
+    const arriveForcast = req.body.forcastA;
     
     // projectData.departure.from = departGeo.geonames[0].toponymName;
     // projectData.arrival.at = arriveGeo.geonames[0].toponymName;
@@ -187,13 +188,21 @@ app.post('/trip', async(req, res) => {
     projectData.arrival.country = arriveGeo.geonames[0].countryName;
 
     let weatherD = await weatherDepart(weatherURL, weatherKey)
-    projectData.departure.temp = weatherD.data[departForcast].temp;
-    projectData.departure.icon = weatherD.data[departForcast].weather.icon;
-    projectData.departure.cloud = weatherD.data[departForcast].weather.description;
+    if(departForcast < 16) {
+        projectData.departure.temp = weatherD.data[departForcast].temp;
+    } else {
+        projectData.departure.temp = 'Weather forcast unknown.'
+    }
+    // projectData.departure.icon = weatherD.data[departForcast].weather.icon;
+    // projectData.departure.cloud = weatherD.data[departForcast].weather.description;
     let weatherA = await weatherArrive(weatherURL, weatherKey)
-    projectData.arrival.temp = weatherA.data[arriveForcast].temp;
-    projectData.arrival.icon = weatherA.data[arriveForcast].weather.icon;
-    projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
+    if(arriveForcast < 16) {
+        projectData.arrival.temp = weatherA.data[arriveForcast].temp;
+    } else {
+        projectData.arrival.temp = 'Weather forcast unknown.'
+    }    
+    // projectData.arrival.icon = weatherA.data[arriveForcast].weather.icon;
+    // projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
 
     let pixabayA = await pixArrive(pixURL, pixKey);
     projectData.arrival.pixabay = pixabayA.hits[0].largeImageURL;
