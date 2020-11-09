@@ -9,6 +9,7 @@
 .fa-search {
     /* search icon */
     font-size: 15pt;
+    color: black;
 }
 
 .dateContainer > .fas {

@@ -1,4 +1,9 @@
 /* form */
+#body{
+    background-color: white;
+    margin: 10em;
+    border-radius: .5em;
+}
 #form {
     display: grid;
     grid-template-areas: 
@@ -6,10 +11,11 @@
         'date'
         'submit';
     justify-content: center;
+    /* align-content: center; */
     /* align-content: center;
     justify-items: center;
     align-items: center; */
-    margin: .5em;
+    margin: 2em;
 }
 
 #place {
