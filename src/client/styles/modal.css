@@ -48,8 +48,8 @@
 
 .btn:hover {
     /* color: black; */
-    background-color:rgb(255, 68, 12);
-    border-color: rgb(255, 68, 12);
+    background-color:rgb(253, 108, 40);
+    border: 0;
 }
 
 /* close button */
