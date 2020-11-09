@@ -1,0 +1,32 @@
+#nav_contain {
+    display: block;
+    justify-content: center;
+    /* background-color: rgb(255, 138, 102); */
+    background: linear-gradient(to right, rgb(255, 138, 102) , rgb(250, 142, 41) , rgb(255, 68, 12));
+    overflow: hidden;
+    /* color: white; */
+}
+
+.nav_link_head {
+    float: left;
+    padding: 1em;
+}
+
+.nav_link {
+    float: right;
+    padding: 1em;
+}
+
+.nav_link > a {
+    color: white;
+    font-size: 1.3em;
+}
+
+.nav_link > a:hover {
+    /* transform: scale(1.05) */
+}
+
+.nav_link:hover {
+    background-color:rgb(253, 108, 40);
+    transform: scale(1.05)
+}

@@ -16,12 +16,8 @@ body {
 
 #nav {
     grid-area: nav;
-    display: flex;
-    justify-content: center;
-}
-
-#nav > div {
-    padding: .5em;
+    /* display: flex;
+    justify-content: center; */
 }
 
 #body {
