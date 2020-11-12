@@ -10,7 +10,8 @@
         <!-- font awesome -->
         <script src="https://kit.fontawesome.com/d338b0f189.js" crossorigin="anonymous"></script>
         <!-- fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet"> 
         <!-- Styles -->
         <link rel="stylesheet" href="styles/modal.css">
@@ -18,21 +19,24 @@
         <link rel="stylesheet" href="styles/form.css">
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/nav.css">
+        <link rel="stylesheet" href="styles/about.css">
+        <link rel="stylesheet" href="styles/footer.css">
     </head>
     <body>
             <nav id='nav'>
                 <div id='nav_contain'>
-                    <div class='nav_link_head'><a href='#nav'>WonderlustPlan</a></div>
-                    <div class='nav_link'><a href='#body'>Planner</a></div>
-                    <div class='nav_link'><a href='#savedTrips'>Trips</a></div>
-                    <div class='nav_link'><a href='#footer'>About</a></div>
+                    <a href='#nav'><div class='nav_link_head'>The<br>Wanderlust Planner</div></a>
+                    <!-- reverse order for nav.css float right -->
+                    <a href='#about_footer'><div class='nav_link'>About</div></a>
+                    <a href='#savedTrips'><div class='nav_link'>Trips</div></a>
+                    <a href='#body'><div class='nav_link'>Planner</div></a>
                 </div>
             </nav>
             <section id='body'>
                 <div id='form'>
                     <form onsubmit="return formHandler(event)">
                         <div id='place'>
-                            <div><h2>Indulge your Wonderlust.</h2></div>
+                            <div><h2>Indulge your Wanderlust.</h2></div>
                             <div class='inputContainer'>
                                 <i class="fas fa-search"></i>
                                 <input class='save' id='arriveInput' type='text' value='' placeholder='Headed to?'>
@@ -67,8 +71,41 @@
                 <!-- <div id='savedTrips'></div> -->
             </section>
             <!-- Footer -->
+            <section id='about_footer'>
+                <div id='about'>
+                    <div id='about_header'>
+                        <div class='line_segment'></div>
+                        <h2>About?</h2>
+                        <div class='line_segment'></div>
+                    </div>
+                    <div id='about_box'>
+                        <h3 id='define_head'>Wanderlust</h3>
+                        <div id='define'>
+                            <p>
+                            [ won-der-luhst ]<br>
+                            <!-- <i>noun</i><br> -->
+                            a strong, innate desire to rove or travel about.
+                            </p>
+                        </div>
+                        <div id='expand_about'>
+                            The Wanderlust Planner aims to help travel and adventure lovers
+                            organize and plan their next trip. The planner provides an easy 
+                            way to save your future trips with departure and arrival dates
+                            and weather. We help keep that vagabon life rolling.
+                        </div>
+                        <div id='quote'>" We help keep that vagabon life rolling. "</div>
+                    </div>
+                </div>
+            </section>
             <footer id='footer'>
-                <div>About</div>
+                <div class="social">
+                    <a href='https://github.com/emmablair'><i class="fab fa-github social_icon"></i></a>
+                    <a href='https://www.linkedin.com/in/emmarblair/'><i class="fab fa-linkedin social_icon"></i></a>
+                    <a href='https://www.emmablair.design'><i class="fas fa-globe social_icon"></i></a>
+                </div>
+                <div id="tag">
+                    <p>Created by Emma Blair</p>
+                </div>
             </footer>
             <!-- MODAL START -->
             <!-- <section id='modalArea'> -->
