@@ -1,4 +1,8 @@
 /* GENERAL */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: grid;
     grid-template-rows: auto;
@@ -7,31 +11,27 @@ body {
     'bdy'
     /* 'bdy' */
     'save'
-    'ft';
+    'ft'
+    'ftr';
     /* use full page 
     regardless of content  */
     width: 100vw;
     min-height: 100vh;
+    /* fixed bg image on scroll */
     background-image: url('../images/travel_road.jpg');
-    /* background-position: center;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative; */
-    background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: 100%; 
-  width: 100%;
-  color: white;
-  text-align: center;
-  display: table;
+    background-position: center center;
+    height: 100%; 
+    width: 100%;
+    color: white;
+    text-align: center;
+    display: table;
 }
 
 #nav {
     grid-area: nav;
-    /* display: flex;
-    justify-content: center; */
 }
 
 #body {
@@ -39,23 +39,15 @@ body {
     display: inline-block;
 }
 
-/* .modalArea {
-    display: none;
-} */
-
-#createTrip {
-    
-}
-
-/* .modalArea.closeModal {
-    display: none;
-} */
-
 #savedTrips {
     grid-area: save;
 }
 
-#footer {
+#about_footer {
     grid-area: ft;
     display: inline-block;
+}
+
+#footer {
+    grid-area: ftr;
 }
