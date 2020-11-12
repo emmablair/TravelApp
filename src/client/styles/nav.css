@@ -1,16 +1,24 @@
+/* nav div {
+    position: fixed;
+} */
+
 #nav_contain {
     display: block;
     justify-content: center;
     background-color: rgb(255, 138, 102);
     /* background: linear-gradient(to right, rgb(255, 138, 102) , rgb(250, 142, 41) , rgb(255, 68, 12)); */
     overflow: hidden;
-    position: sticky;
+    font-family: 'Montserrat', sans-serif;
+    position: fixed;
+    width: 100%;
     /* color: white; */
 }
 
 .nav_link_head {
     float: left;
     padding: 1em;
+    text-align: left;
+    line-height: .9em;
 }
 
 .nav_link {
@@ -18,9 +26,8 @@
     padding: 1em;
 }
 
-.nav_link > a {
+#nav_contain > a {
     position: sticky;
-
     color: white;
     font-size: 1.3em;
 }
