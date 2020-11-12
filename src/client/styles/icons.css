@@ -17,3 +17,9 @@
     font-size: 20pt;
     color: rgb(255, 138, 102);
 }
+
+.social_icon {
+    font-size: 3em;
+    color: black;
+    padding: .3em;
+}
