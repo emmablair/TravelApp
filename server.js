@@ -2,7 +2,7 @@
 const projectData = {
     departure: {
         from: '',
-        country: '',
+        specify: '',
         day: '',
         lat: '',
         lng: '',
@@ -12,7 +12,7 @@ const projectData = {
     },
     arrival: {
         at: '',
-        country: '',
+        specify: '',
         day: '',
         lat: '',
         lng: '',
@@ -68,6 +68,7 @@ const geoNameDepart = async (baseURL, key, departInput) => {
     let url = `${baseURL}${departInput}${urlSettings}${key}`;
     console.log(url);
     let res = await fetch(url);
+
     try {
         let data = await res.json();
         return data;
@@ -81,7 +82,7 @@ const geoNameArrive = async (baseURL, key, arriveInput) => {
     let url = `${baseURL}${arriveInput}${urlSettings}${key}`;
     console.log(url);
     let res = await fetch(url);
-    // console.log(res);
+    
     try {
         let data = await res.json();
         return data;
@@ -126,9 +127,10 @@ const pixKey = process.env.PIXABAY_KEY;
 
 const pixArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&per_page=3&category=travel&image_type=photo`;
-    let url = `${baseURL}${key}&q=${projectData.arrival.at}+${projectData.arrival.country}${urlSettings}`;
+    let url = `${baseURL}${key}&q=${projectData.arrival.at}+${projectData.arrival.specify}${urlSettings}`;
     console.log(url);
     let res = await fetch(url);
+
     try {
         let data = await res.json();
         return data;
@@ -176,22 +178,22 @@ app.post('/trip', async(req, res) => {
     projectData.arrival.day = arriveDate;
 
     let departGeo = await geoNameDepart(geoURL, geoKey, departInput)
-    projectData.departure.from = departGeo.geonames[0].toponymName;
-    projectData.departure.lat = departGeo.geonames[0].lat;
-    projectData.departure.lng = departGeo.geonames[0].lng;
-    projectData.departure.country = departGeo.geonames[0].countryName;
+    projectData.departure.from = departGeo.geonames[0].toponymName
+    projectData.departure.lat = departGeo.geonames[0].lat
+    projectData.departure.lng = departGeo.geonames[0].lng
+    projectData.departure.specify = departGeo.geonames[0].adminName1
 
     let arriveGeo = await geoNameArrive(geoURL, geoKey, arriveInput)
-    projectData.arrival.at = arriveGeo.geonames[0].toponymName;
-    projectData.arrival.lat = arriveGeo.geonames[0].lat;
-    projectData.arrival.lng = arriveGeo.geonames[0].lng;
-    projectData.arrival.country = arriveGeo.geonames[0].countryName;
+    projectData.arrival.at = arriveGeo.geonames[0].toponymName
+    projectData.arrival.lat = arriveGeo.geonames[0].lat
+    projectData.arrival.lng = arriveGeo.geonames[0].lng
+    projectData.arrival.specify = arriveGeo.geonames[0].adminName1
 
     let weatherD = await weatherDepart(weatherURL, weatherKey)
     if(departForcast < 16) {
         projectData.departure.temp = weatherD.data[departForcast].temp;
     } else {
-        projectData.departure.temp = 'Weather forcast unknown.'
+        projectData.departure.temp = 'Weather forcast unknown.';
     }
     // projectData.departure.icon = weatherD.data[departForcast].weather.icon;
     // projectData.departure.cloud = weatherD.data[departForcast].weather.description;
@@ -199,13 +201,14 @@ app.post('/trip', async(req, res) => {
     if(arriveForcast < 16) {
         projectData.arrival.temp = weatherA.data[arriveForcast].temp;
     } else {
-        projectData.arrival.temp = 'Weather forcast unknown.'
-    }    
+        projectData.arrival.temp = 'Weather forcast unknown.';
+    }
     // projectData.arrival.icon = weatherA.data[arriveForcast].weather.icon;
     // projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
 
-    let pixabayA = await pixArrive(pixURL, pixKey);
-    projectData.arrival.pixabay = pixabayA.hits[0].largeImageURL;
+    let pixabayA = await pixArrive(pixURL, pixKey)
+    projectData.arrival.pixabay = pixabayA.hits[0].largeImageURL
+
     console.log(projectData);
     res.send(projectData);
 });
