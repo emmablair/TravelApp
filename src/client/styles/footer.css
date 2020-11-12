@@ -1,0 +1,12 @@
+footer {
+    margin-bottom: 2em;
+}
+
+#tag {
+    font-size: 1em;
+    color: black;
+}
+
+.social_icon:hover {
+    transform: scale(1.09)
+}
