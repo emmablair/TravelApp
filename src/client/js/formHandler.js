@@ -173,9 +173,9 @@ const updateSavedTrip = (divs) => {
         for (let i = 0; i < trips.length; i++){
         // divs.innerHTML = `
         // <div class="saveCard">
-        //   <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}">
+        //   <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}">
         //   <details class="savePlace">
-        //     <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.country}</summary>
+        //     <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.specify}</summary>
         //     <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
         //   </details>
         // </div>`
@@ -183,7 +183,7 @@ const updateSavedTrip = (divs) => {
         <div class="saveCard">
           
           <details class="savePlace">
-            <summary class="saveTitle"><img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.country}"></summary>
+            <summary class="saveTitle"><img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}"></summary>
             <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
           </details>
         </div>`
