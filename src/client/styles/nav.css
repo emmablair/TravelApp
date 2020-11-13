@@ -1,22 +1,18 @@
-/* nav div {
-    position: fixed;
-} */
-
 #nav_contain {
     display: block;
-    justify-content: center;
+    align-content: center;
     background-color: rgb(255, 138, 102);
     /* background: linear-gradient(to right, rgb(255, 138, 102) , rgb(250, 142, 41) , rgb(255, 68, 12)); */
     overflow: hidden;
     font-family: 'Montserrat', sans-serif;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     /* color: white; */
 }
 
 .nav_link_head {
     float: left;
-    padding: 1em;
+    padding: .9em;
     text-align: left;
     line-height: .9em;
 }
@@ -27,7 +23,6 @@
 }
 
 #nav_contain > a {
-    position: sticky;
     color: white;
     font-size: 1.3em;
 }
@@ -37,6 +32,11 @@
 }
 
 .nav_link:hover {
+    background-color:rgb(253, 108, 40);
+    transform: scale(1.05)
+}
+
+.nav_link_head:hover {
     background-color:rgb(253, 108, 40);
     transform: scale(1.05)
 }
