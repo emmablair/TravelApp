@@ -12,7 +12,7 @@
     color: black;
 }
 
-.dateContainer > .fas {
+.plane-date {
     /* depart arrive plane */
     font-size: 20pt;
     color: rgb(255, 138, 102);
