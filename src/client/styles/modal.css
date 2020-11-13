@@ -47,7 +47,7 @@
 .btn {
     color: white;
     background-color: rgb(255, 138, 102);
-    border-color: rgb(255, 138, 102);
+    border: 0;
 }
 
 .btn:hover {
@@ -59,11 +59,12 @@
 /* close button */
 #savedTrips {
     display: flex;
+    scroll-margin-top: 100px;
     margin: 2em;
+    cursor: pointer;
 }
 
 .btn.hide {
-    /* color: black; */
     background-color: rgb(126, 126, 126);
     border-color: rgb(126, 126, 126);
 }
@@ -78,10 +79,6 @@
     object-fit: cover;
 }
 
-/* .trip {
-    justify-: center;
-    align-self: center;
-} */
 .saveCard {
     border-color: grey;
     border-radius: .5em;
@@ -93,6 +90,6 @@
 }
 
 .saveCard:hover {
-    transform: scale(1.05)
+    transform: scale(1.05);
 }
 
