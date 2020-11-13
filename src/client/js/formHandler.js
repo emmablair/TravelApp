@@ -182,10 +182,11 @@ const updateSavedTrip = (divs) => {
         divs.innerHTML = `
         <div class="saveCard">
           
-          <details class="savePlace">
-            <summary class="saveTitle"><img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}"></summary>
-            <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
-          </details>
+          <div class="savePlace">
+            <div class="saveTitle">
+            <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}">
+            </div>
+          </div>
         </div>`
         } 
     })  
