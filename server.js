@@ -13,7 +13,7 @@ const projectData = {
     arrival: {
         at: '',
         specify: '',
-        day: '',
+        return: '',
         lat: '',
         lng: '',
         temp: '',
@@ -143,7 +143,7 @@ const pixArrive = async (baseURL, key) => {
 app.post('/trip', async(req, res) => {
 
     const departDate = req.body.dateD;
-    const arriveDate = req.body.dateA;
+    const returnDate = req.body.dateA;
     
 
     // // /* ::: Current date in date input field ::: */
@@ -156,7 +156,7 @@ app.post('/trip', async(req, res) => {
     // /* ::: apply current date ::: */
     // const currentDate = new Date().toDateInputValue();
     // departDate = currentDate; //.valueAsDate without timezone also works
-    // arriveDate = currentDate; //.valueAsDate without timezone also works
+    // returnDate = currentDate; //.valueAsDate without timezone also works
 
     // /* ::: date diffence for weather Forcast ::: */
     // const dateDifference = (date1, date2) => {
@@ -175,7 +175,7 @@ app.post('/trip', async(req, res) => {
     // projectData.departure.from = departGeo.geonames[0].toponymName;
     // projectData.arrival.at = arriveGeo.geonames[0].toponymName;
     projectData.departure.day = departDate;
-    projectData.arrival.day = arriveDate;
+    projectData.arrival.return = returnDate;
 
     let departGeo = await geoNameDepart(geoURL, geoKey, departInput)
     projectData.departure.from = departGeo.geonames[0].toponymName
@@ -191,17 +191,21 @@ app.post('/trip', async(req, res) => {
 
     let weatherD = await weatherDepart(weatherURL, weatherKey)
     if(departForcast < 16) {
-        projectData.departure.temp = weatherD.data[departForcast].temp;
+        projectData.departure.temp = `${weatherD.data[departForcast].temp}°F`;
+        projectData.departure.cloud = weatherD.data[departForcast].weather.description;
     } else {
-        projectData.departure.temp = 'Weather forcast unknown.';
+        projectData.departure.temp = 'Forcast unknown';
+        projectData.departure.cloud = '';
     }
     // projectData.departure.icon = weatherD.data[departForcast].weather.icon;
     // projectData.departure.cloud = weatherD.data[departForcast].weather.description;
     let weatherA = await weatherArrive(weatherURL, weatherKey)
     if(arriveForcast < 16) {
-        projectData.arrival.temp = weatherA.data[arriveForcast].temp;
+        projectData.arrival.temp = `${weatherA.data[arriveForcast].temp}°F`;
+        projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
     } else {
-        projectData.arrival.temp = 'Weather forcast unknown.';
+        projectData.arrival.temp = 'Forcast unknown';
+        projectData.arrival.cloud = '';
     }
     // projectData.arrival.icon = weatherA.data[arriveForcast].weather.icon;
     // projectData.arrival.cloud = weatherA.data[arriveForcast].weather.description;
