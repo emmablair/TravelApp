@@ -23,16 +23,6 @@
     grid-area: place;
 }
 
-#place > .save {
-    /* width: 100%;
-    border-color: none;
-    border-radius: .3em;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
-    margin: .5em;
-    border: 0;
-    border-color: none */
-}
-
 .inputContainer {
     /* width: 100%; */
     border-color: none;
