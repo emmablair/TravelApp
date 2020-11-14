@@ -4,7 +4,7 @@ $(function () {
   })
 
 let departDate = document.querySelector('#departDate').value;
-let arriveDate = document.querySelector('#arriveDate').value;
+let returnDate = document.querySelector('#returnDate').value;
 
 /* ::: Current date in date input field ::: */
 Date.prototype.toDateInputValue = (function() {
@@ -16,7 +16,7 @@ Date.prototype.toDateInputValue = (function() {
 /* ::: apply current date ::: */
 const currentDate = new Date().toDateInputValue();
 document.querySelector('#departDate').value = currentDate; //.valueAsDate without timezone also works
-document.querySelector('#arriveDate').value = currentDate; //.valueAsDate without timezone also works
+document.querySelector('#returnDate').value = currentDate; //.valueAsDate without timezone also works
 
 /* ::: date diffence for weather Forcast ::: */
 const dateDifference = (date1, date2) => {
@@ -32,18 +32,18 @@ const formHandler = async(e) => {
     e.preventDefault();
 
     const departDate = document.querySelector('#departDate').value;
-    const arriveDate = document.querySelector('#arriveDate').value;
+    const returnDate = document.querySelector('#returnDate').value;
     console.log(departDate)
-    console.log(arriveDate)
+    console.log(returnDate)
     const dForcast = dateDifference(currentDate, departDate);
-    const aForcast = dateDifference(currentDate, arriveDate);
+    const aForcast = dateDifference(currentDate, returnDate);
     console.log(dForcast)
     console.log(aForcast)
     const departInput = document.querySelector('#departInput').value;
     const arriveInput = document.querySelector('#arriveInput').value;
 
     /* :::IF statment to check if form fields are blank::: */
-    if(departInput === '' || arriveInput === '' || departDate === '' || arriveDate === '') {
+    if(departInput === '' || arriveInput === '' || departDate === '' || returnDate === '') {
         alert('Please enter valid locations and dates.')
     }else{
         /* if form fields aren't blank than give modal the data-target ID
@@ -66,7 +66,7 @@ const formHandler = async(e) => {
                 depart: departInput,
                 arrive: arriveInput,
                 dateD: departDate,
-                dateA: arriveDate,
+                dateA: returnDate,
                 forcastA: aForcast,
                 forcastD: dForcast
             })
@@ -168,28 +168,48 @@ save()
 
 const updateSavedTrip = (divs) => {
     /* UpdateUI of saved trips with local storage data */
+    const saveCard = document.createElement('div');
+    saveCard.classList.add('saveCard');
+    divs.appendChild(saveCard);
+    const saveImgBox = document.createElement('div');
+    saveImgBox.classList.add('saveImgBox');
+    saveCard.appendChild(saveImgBox);
     const trips = JSON.parse(localStorage.getItem('tripInfos'));
     trips.forEach( () => {
         for (let i = 0; i < trips.length; i++){
-        // divs.innerHTML = `
-        // <div class="saveCard">
-        //   <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}">
-        //   <details class="savePlace">
-        //     <summary class="saveTitle">${trips[i].arrival.at}, ${trips[i].arrival.specify}</summary>
-        //     <p class="saveDate"><strong>Departing:</strong> ${trips[i].departure.day}</p>
-        //   </details>
-        // </div>`
-        divs.innerHTML = `
-        <div class="saveCard">
-          
-          <div class="savePlace">
-            <div class="saveTitle">
+        const daysToTrip = dateDifference(currentDate, trips[i].departure.day)
+        saveImgBox.innerHTML = `
             <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}">
-            </div>
-          </div>
-        </div>`
+        `
         } 
-    })  
+    }) 
+    mouseOverInfo(saveImgBox);
+}
+
+const mouseOverInfo = (saveImgBox) => {
+    const trips = JSON.parse(localStorage.getItem('tripInfos'));
+    const saveInfo = document.createElement('div');
+    saveInfo.classList.add('saveInfo');
+    saveImgBox.appendChild(saveInfo);
+    saveImgBox.addEventListener('mouseover', (e) => {
+        saveInfo.style.padding = '1em';
+        // divs.lastChild.style.display = '';
+        trips.forEach( () => {
+            for (let i = 0; i < trips.length; i++){
+            const daysToTrip = dateDifference(currentDate, trips[i].departure.day)
+            saveInfo.innerHTML =
+               `<div class='saveDepart'><strong>Depart:</strong> ${trips[i].departure.day}</div>
+                <div class='saveDWeather'>${trips[i].departure.temp} ${trips[i].departure.cloud}</div>
+                <div class='saveReturn'><strong>Return:</strong> ${trips[i].arrival.return}</div>
+                <div class='saveAWeather'>${trips[i].arrival.temp} ${trips[i].arrival.cloud}</div>
+                <div class='daysUntil'>${daysToTrip} Days Away!</div>`
+            } 
+        })
+    }) 
+    saveImgBox.addEventListener('mouseout', (e) => {
+        saveInfo.innerHTML = ''
+        saveInfo.style.padding = '0';
+    })
 }
 
 const addSave = (tripInfos) => {
@@ -198,14 +218,12 @@ const addSave = (tripInfos) => {
     let buttons = document.createElement('button')
     savedTrip.appendChild(divs)
     divs.classList.add('trip')
-    // divs.classList.add('card-deck')
     const saves = document.querySelector('.trip');
     updateSavedTrip(divs);
+    // mouseOverInfo(divs, saveCard);
     /* creates NEW button each save */
-    // divs.appendChild(buttons)
     divs.lastChild.appendChild(buttons);
     buttons.classList.add('delete')
-    // buttons.classList.add('card-footer')
     buttons.classList.add('btn')
     buttons.id = 'saved'
     buttons.innerHTML = 'Cancel Trip'
@@ -228,3 +246,9 @@ const deleteTrip = (tripInfos, buttons) => {
         })
     })
 }
+
+
+
+
+
+// saveInfo
