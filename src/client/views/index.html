@@ -52,7 +52,7 @@
                                     <i class="fas fa-plane-departure plane-date"></i>
                                     <input class='save' id='departDate' name='Departing' type='date'>
                                 </div>
-                                <div class='dateContainer' data-toggle="tooltip" data-placement="left" title="Reture Date">
+                                <div class='dateContainer' data-toggle="tooltip" data-placement="left" title="Return Date">
                                     <i class="fas fa-plane-arrival plane-date"></i>
                                     <input class='save' id='returnDate' name='Arriving' type='date'>
                                 </div>
@@ -66,12 +66,19 @@
             </section>
             <!-- Saved Trips -->
             <section>
-                <div id='savedTrips'>Let's Go!</div>
+                <div class='binding trip_bind'>
+                    <div id='section_header' class='saveHeader'>
+                        <div class='line_segment'></div>
+                        <h2>Trips</h2>
+                        <div class='line_segment'></div>
+                    </div>
+                    <div id='savedTrips'></div>
+                </div>
             </section>
             <!-- Footer -->
             <section id='about_footer'>
-                <div id='about'>
-                    <div id='about_header'>
+                <div class='binding'>
+                    <div id='section_header'>
                         <div class='line_segment'></div>
                         <h2>About?</h2>
                         <div class='line_segment'></div>
@@ -108,7 +115,7 @@
             <!-- MODAL START -->
             <!-- <section id='modalArea'> -->
                 <div class="modal fade data-target" id ='' tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <!-- <div class="modal-header"> -->
                             <!-- <h5 class="modal-title"></h5> -->
@@ -119,22 +126,26 @@
                         <!-- <div class="modal-body"> -->
                             <div id='modal-container'>
                                 <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
-                                <h5 class="modal-title"></h5>
+                                <!-- <h5 class="modal-title"></h5> -->
                             </div>
                             <div id='info'>
+                                <div id='info_header'>
+                                    <div id='head_to'></div>
+                                    <div id='head_from'></div>
+                                </div>
                                 <div id='depart'>
                                     <div id='dayD'></div>
                                     <div id='weatherD'></div>
                                 </div>
-                                <div id='arrive'>
-                                    <div id='dayD'></div>
-                                    <div id='weatherA'></div>
+                                <div id='return'>
+                                    <div id='dayR'></div>
+                                    <div id='weatherR'></div>
                                 </div>
                             <!-- </div> -->
-                                <div class="modal-footer">
-                                    <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Create Trip</button>
-                                    <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Create Trip</button>
+                                <button type="button" class="hide btn btn-secondary" data-dismiss="modal">Close</button>
                             </div>
                     </div>
                     </div>
