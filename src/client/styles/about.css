@@ -2,7 +2,7 @@
     scroll-margin-top: 100px;
 }
 
-#about {
+.about {
     margin-left: 2em;
     margin-right: 2em;
     margin-bottom: 2em;
@@ -12,22 +12,6 @@
     padding-bottom: 4em;
     color: black;
     border-radius: .5em;
-}
-
-#about_header {
-    display: flex;
-    /* width: 80%; */
-    align-items: center;
-    justify-items: center;
-    /* color: black; */
-}
-
-.line_segment {
-    background-color: rgb(255, 138, 102);
-    width: 100%;
-    height: .3em;
-    margin-right: 2em;
-    margin-left: 2em;
 }
 
 #about_box {
