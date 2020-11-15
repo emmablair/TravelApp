@@ -2,14 +2,11 @@
 .modal-content {
     display: grid;
     grid-template-columns: auto;
+    grid-template-rows: auto;
     grid-template-areas:
-    'pic info'
-    'pic info'
-    'pic info'
-}
-
-#info {
-    grid-area: info;
+    'pic'
+    'info'
+    'btn';
 }
 
 #modal-container {
@@ -17,33 +14,77 @@
     position: relative;
     text-align: center;
     justify-self: start;
-    /* color: white; */
 }
 
 .modal-title {
     display: inline-block;
-    /* position: absolute; */
-    /* top: 50%;
-    left: 50%; */
-    /* transform: translate(-50%, -50%); */
     color: rgba(255, 255, 255, 0.815);
     font-size: 2em;
     background-color: rgb(255, 138, 102);
-    width: 40vw;
+    width: 100%;
     font-family: 'Sora', sans-serif;
 }
 
 #arrivePic {
     /* image */
     display: inline-block;
-    /* width: 100%;
-    height: 100%; */
-    width: 40vw;
-    height: 30vw;
+    width: 100%;
+    height: 100%;
+    /* width: 40vw;
+    height: 30vw; */
     object-fit: cover;
     /* border-radius: .5vw; */
 }
 
+#info {
+    grid-area: info;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+    'hd hd'
+    'depart return'
+    'depart return';
+    color: black;
+    padding: 1em;
+    padding-bottom: 2em;
+}
+
+#info_header {
+    grid-area: hd;
+}
+
+#head_to {
+    font-family: 'Fredericka the Great', cursive;
+    color:rgb(253, 108, 40);
+    font-size: 2em;
+}
+
+#head_from {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+}
+
+#depart {
+    grid-area: depart;
+    padding-top: 2em;
+}
+
+#info > .fas {
+    padding: 1em;
+}
+
+#return {
+    grid-area: return;
+    padding-top: 2em;
+}
+
+.modal-footer > .btn {
+    grid-area: btn;
+    justify-self: center;
+}
+
+/* ALL buttons */
 .btn {
     color: white;
     background-color: rgb(255, 138, 102);
@@ -56,11 +97,13 @@
     border: 0;
 }
 
-/* close button */
+/* SAVED CARDS */
 #savedTrips {
     display: flex;
+    flex-wrap: wrap;
     scroll-margin-top: 100px;
-    margin: 5em;
+    margin: 2em;
+    /* margin-bottom: 20em; */
 }
 
 .btn.hide {
@@ -87,6 +130,7 @@
     justify-self: center;
     align-self: center;
     text-align: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
 }
 
 .saveCard:hover {
@@ -97,4 +141,25 @@
     background-color: white;
     color: black;
     /* padding: 1em; */
+}
+
+.saveHeader {
+    background-color: white;
+}
+
+.tripTo {
+    font-family: 'Fredericka the Great', cursive;
+    color: rgb(253, 108, 40);
+    font-size: 1.1em;
+}
+
+.tripFrom {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    font-size: .7em;
+}
+
+.s_Info {
+    color: black;
+    font-size: 1em;
 }
