@@ -126,8 +126,8 @@ const pixURL = `https://pixabay.com/api/?`;
 const pixKey = process.env.PIXABAY_KEY;
 
 const pixArrive = async (baseURL, key) => {
-    let urlSettings = `&lang=en&per_page=3&category=travel&image_type=photo`;
-    let url = `${baseURL}${key}&q=${projectData.arrival.at}+${projectData.arrival.specify}${urlSettings}`;
+    let urlSettings = `&lang=en&per_page=3&category=places&image_type=photo`;
+    let url = `${baseURL}${key}&q=${projectData.arrival.at}${urlSettings}`;
     console.log(url);
     let res = await fetch(url);
 
