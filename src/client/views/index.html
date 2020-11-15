@@ -25,7 +25,7 @@
     <body>
             <nav id='nav'>
                 <div id='nav_contain'>
-                    <a href='#nav'><div class='nav_link_head'>The<br>Wanderlust Planner</div></a>
+                    <div class='nav_link_head'>The<br>Wanderlust Planner</div>
                     <!-- reverse order for nav.css float right -->
                     <a href='#about_footer'><div class='nav_link'>About</div></a>
                     <a href='#savedTrips'><div class='nav_link'>Trips</div></a>
@@ -66,11 +66,12 @@
             </section>
             <!-- Saved Trips -->
             <section>
-                <div class='binding trip_bind'>
+                <div>
+                <!-- <div class='binding trip_bind'> -->
                     <div id='section_header' class='saveHeader'>
-                        <div class='line_segment'></div>
+                        <!-- <div class='line_segment'></div>
                         <h2>Trips</h2>
-                        <div class='line_segment'></div>
+                        <div class='line_segment'></div> -->
                     </div>
                     <div id='savedTrips'></div>
                 </div>
@@ -102,6 +103,9 @@
                     </div>
                 </div>
             </section>
+            <button>
+                <i id='scrollToTop' class="fas fa-arrow-circle-up"></i>
+            </button>
             <footer id='footer'>
                 <div class="social">
                     <a href='https://github.com/emmablair'><i class="fab fa-github social_icon"></i></a>
@@ -112,21 +116,12 @@
                     <p>Created by Emma Blair</p>
                 </div>
             </footer>
-            <!-- MODAL START -->
-            <!-- <section id='modalArea'> -->
+            <!---- MODAL START ---->
                 <div class="modal fade data-target" id ='' tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <!-- <div class="modal-header"> -->
-                            <!-- <h5 class="modal-title"></h5> -->
-                            <!-- <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button> -->
-                        <!-- </div> -->
-                        <!-- <div class="modal-body"> -->
                             <div id='modal-container'>
                                 <div id='arrivePic_box'><img id='arrivePic' src='' alt=''></div>
-                                <!-- <h5 class="modal-title"></h5> -->
                             </div>
                             <div id='info'>
                                 <div id='info_header'>
@@ -141,7 +136,6 @@
                                     <div id='dayR'></div>
                                     <div id='weatherR'></div>
                                 </div>
-                            <!-- </div> -->
                             </div>
                             <div class="modal-footer">
                                 <button id='save' type="button" class="btn btn-primary" data-dismiss="modal">Create Trip</button>
@@ -150,7 +144,6 @@
                     </div>
                     </div>
                 </div>
-            <!-- </section> -->
             <!-- MODAL END -->
         <!-- Bootstrap Modal Scripts -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -158,4 +151,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!-- JS Scripts -->
         <script src='../js/formHandler.js'></script>
+        <script src='../js/toTop.js'></script>
     </body>

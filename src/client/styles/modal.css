@@ -1,4 +1,5 @@
-/* MODAL */
+/* ---- MODAL ---- */
+
 .modal-content {
     display: grid;
     grid-template-columns: auto;
@@ -30,10 +31,7 @@
     display: inline-block;
     width: 100%;
     height: 100%;
-    /* width: 40vw;
-    height: 30vw; */
     object-fit: cover;
-    /* border-radius: .5vw; */
 }
 
 #info {
@@ -70,10 +68,6 @@
     padding-top: 2em;
 }
 
-#info > .fas {
-    padding: 1em;
-}
-
 #return {
     grid-area: return;
     padding-top: 2em;
@@ -81,10 +75,10 @@
 
 .modal-footer > .btn {
     grid-area: btn;
-    justify-self: center;
 }
 
-/* ALL buttons */
+/* ---- ALL buttons ---- */
+
 .btn {
     color: white;
     background-color: rgb(255, 138, 102);
@@ -92,18 +86,19 @@
 }
 
 .btn:hover {
-    /* color: black; */
     background-color:rgb(253, 108, 40);
     border: 0;
 }
 
-/* SAVED CARDS */
+/* ---- SAVED CARDS ---- */
+
 #savedTrips {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     scroll-margin-top: 100px;
     margin: 2em;
-    /* margin-bottom: 20em; */
+    margin-bottom: 13em;
 }
 
 .btn.hide {
@@ -140,7 +135,6 @@
 .saveInfo {
     background-color: white;
     color: black;
-    /* padding: 1em; */
 }
 
 .saveHeader {
