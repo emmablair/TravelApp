@@ -1,4 +1,5 @@
-/* GENERAL */
+/* ---- GENERAL ---- */
+
 html {
     scroll-behavior: smooth;
 }
@@ -9,7 +10,6 @@ body {
     grid-template-areas:
     'nav'
     'bdy'
-    /* 'bdy' */
     'save'
     'ft'
     'ftr';
@@ -52,7 +52,8 @@ body {
     grid-area: ftr;
 }
 
-/* Section Containers */
+/* ---- Section Containers ---- */
+
 .binding {
     margin-left: 2em;
     margin-right: 2em;
@@ -65,13 +66,12 @@ body {
     border-radius: .5em;
 }
 
-/* Header styles */
+/* ---- Header styles ---- */
+
 #section_header {
     display: flex;
-    /* width: 80%; */
     align-items: center;
     justify-items: center;
-    /* color: black; */
 }
 
 .line_segment {
@@ -80,4 +80,24 @@ body {
     height: .3em;
     margin-right: 2em;
     margin-left: 2em;
+}
+
+/* ---- Scroll To Top ---- */
+
+#scrollToTop {
+    display: none;
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    color: rgb(255, 138, 102);
+    font-size: 70px;
+}
+
+#scrollToTop:hover {
+    transform: scale(1.08);
 }

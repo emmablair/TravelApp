@@ -1,4 +1,4 @@
-/* fontAwsome */
+/* ---- fontAwsome ---- */
 
 .fa-plane {
     /* modal plane */
@@ -13,7 +13,13 @@
 }
 
 .plane-date {
-    /* depart arrive plane */
+    /* depart/arrive plane */
+    font-size: 20pt;
+    color: rgb(255, 138, 102);
+}
+
+.modal-plane {
+    padding-right: .5em;
     font-size: 20pt;
     color: rgb(255, 138, 102);
 }

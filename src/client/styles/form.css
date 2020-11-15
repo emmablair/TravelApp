@@ -1,8 +1,9 @@
-/* form */
+/* ---- form ---- */
+
 #body{
     scroll-margin-top: 100px;
     background-color: white;
-    margin: 10em;
+    margin: 11em;
     border-radius: .5em;
 }
 #form {
@@ -12,10 +13,6 @@
         'date'
         'submit';
     justify-content: center;
-    /* align-content: center; */
-    /* align-content: center;
-    justify-items: center;
-    align-items: center; */
     margin: 2em;
 }
 
@@ -24,14 +21,11 @@
 }
 
 .inputContainer {
-    /* width: 100%; */
     border-color: none;
     border-radius: .3em;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.445);
-    /* margin: 1em; */
     margin-bottom: 1em;
     padding-left: .5em;
-
 }
 
 input[type='text'] {
@@ -65,11 +59,7 @@ input[type='text'] {
 
 input[type='date'] {
     font-size: 14pt;
-    /* padding-left: .5em; */
-    /* padding-top: .5em; */
-    /* padding-bottom: .5em; */
     border: 0;
-    /* width: 90%; */
 }
 
 input[type='date']:hover {
@@ -103,10 +93,6 @@ input[type='submit'] {
 
 input[type='submit']:hover {
     background-color:rgb(253, 108, 40);
-}
-
-#submitForm > input {
-    /* width: 100%; */
 }
 
 h2 {
