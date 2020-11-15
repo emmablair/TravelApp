@@ -159,12 +159,12 @@ save()
 
 const updateSavedTrip = (divs) => {
     // UpdateUI of saved trips with local storage data
-    const saveCard = document.createElement('div');
-    saveCard.classList.add('saveCard');
-    divs.appendChild(saveCard);
+    // const saveCard = document.createElement('div');
+    // saveCard.classList.add('saveCard');
+    // divs.appendChild(saveCard);
     const saveImgBox = document.createElement('div');
     saveImgBox.classList.add('saveImgBox');
-    saveCard.appendChild(saveImgBox);
+    divs.appendChild(saveImgBox);
     const trips = JSON.parse(localStorage.getItem('tripInfos'));
     // basic CARD with image and button (NO INFO)
     trips.forEach( () => {
@@ -218,18 +218,20 @@ const addSave = (tripInfos) => {
     let divs = document.createElement('div');
     let buttons = document.createElement('button')
     savedTrip.appendChild(divs)
-    divs.classList.add('trip')
+    divs.classList.add('saveCard')
     const saves = document.querySelector('.trip');
     // Update the Save Cards with INFO
     updateSavedTrip(divs);
     // creates NEW button each save
-    divs.lastChild.appendChild(buttons);
+    divs.appendChild(buttons);
     buttons.classList.add('delete')
     buttons.classList.add('btn')
     buttons.id = 'saved'
     buttons.innerHTML = 'Cancel Trip'
     // Delete trip from view and storage
     deleteTrip(tripInfos, buttons)
+    // remove 'no trips yet' message if there are trips
+    noTripMessage()
 };
 
 /* ::: Delete Trip | Display and LocalStorage ::: */
@@ -245,7 +247,22 @@ const deleteTrip = (tripInfos, buttons) => {
                 e.target.parentElement.remove();
                 tripInfos.splice(tripInfos.indexOf(e.target), 1);
                 localStorage.tripInfos = JSON.stringify(tripInfos);
+                // REPLACE NO TRIP MSG IF ZERO TRIPS LEFT OVER
+                noTripMessage()
             }
         })
     })
+}
+
+/* ::: remove "adventure awaits" msg ::: */
+
+const noTripMessage = () => {
+    // IF trips saved THEN remove "adventure awaits" msg
+    let beforeTrip = document.querySelector('#beforeTrip');
+    let trip = document.querySelector('.saveCard');
+    if(trip != null) {
+        beforeTrip.style.display = 'none';
+    }else{
+        beforeTrip.style.display = ''
+    }
 }

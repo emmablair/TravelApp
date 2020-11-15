@@ -92,6 +92,17 @@
 
 /* ---- SAVED CARDS ---- */
 
+#beforeTrip {
+    display: default;
+}
+
+#noTrip {
+    font-family: 'Montserrat', sans-serif;
+    color: #ff490e;
+    font-weight: 800;
+    font-size: 3em;
+}
+
 #savedTrips {
     display: flex;
     flex-wrap: wrap;
