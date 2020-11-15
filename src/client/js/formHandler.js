@@ -88,43 +88,26 @@ const formHandler = async(e) => {
     }
 }
 
-// const tripUI = (tripInfo) => {
-//     const show = document.querySelector('#show');
-//     const target = document.querySelector('.data-target');
-//     modalArea.style.display = 'inline-block';
-//     show.classList.toggle('data-target')
-
-
-//     let title = document.querySelector('.modal-title');
-//     let pic = document.querySelector('#arrivePic');
-//     title.innerHTML = `${tripInfo.departure.from} to ${tripInfo.arrival.at}`
-//     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
-//     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
-// }
-
-// const modalArea = document.querySelector('.modalArea');
-// // const closeModal = document.querySelector('.closeModal');
-// const hide = document.querySelector('.hide');
-// hide.addEventListener('click', () => {
-//     modalArea.style.display = 'none';
-//     show.classList.add('data-target')
-// })
-
-// const modalArea = document.querySelector('.modalArea');
-// // const closeModal = document.querySelector('.closeModal');
-// const hide = document.querySelector('.hide');
-// hide.addEventListener('click', () => {
-//     // hide modal from display
-//     modalArea.style.display = 'none';
-//     // show.classList.add('data-target')
-// })
-
 const tripUI = (tripInfo) => {
+    /* Image and Travel Title */
     let title = document.querySelector('.modal-title');
     let pic = document.querySelector('#arrivePic');
-    title.innerHTML = `${tripInfo.departure.from} <i class="fas fa-plane"></i> ${tripInfo.arrival.at}`
+    // title.innerHTML = `${tripInfo.departure.from} <i class="fas fa-plane"></i> ${tripInfo.arrival.at}`
     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
+    /* Trip Information */
+    let headTo = document.querySelector('#head_to');
+    let headFrom = document.querySelector('#head_from');
+    let dayD = document.querySelector('#dayD');
+    let dayR = document.querySelector('#dayR');
+    let weatherD = document.querySelector('#weatherD');
+    let weatherR = document.querySelector('#weatherR');
+    headTo.innerHTML = `${tripInfo.arrival.at}, ${tripInfo.arrival.specify}`
+    headFrom.innerHTML = `From: ${tripInfo.departure.from}, ${tripInfo.departure.specify}`
+    dayD.innerHTML = `<i class="fas fa-plane-departure plane-date"></i>${tripInfo.departure.day}`
+    dayR.innerHTML = `<i class="fas fa-plane-arrival plane-date"></i>${tripInfo.arrival.return}`
+    weatherD.innerHTML = `${tripInfo.departure.temp} ${tripInfo.departure.cloud}`
+    weatherR.innerHTML = `${tripInfo.arrival.temp} ${tripInfo.arrival.cloud}`
 }
 
 const store = (tripInfo) => {
@@ -198,11 +181,13 @@ const mouseOverInfo = (saveImgBox) => {
             for (let i = 0; i < trips.length; i++){
             const daysToTrip = dateDifference(currentDate, trips[i].departure.day)
             saveInfo.innerHTML =
-               `<div class='saveDepart'><strong>Depart:</strong> ${trips[i].departure.day}</div>
-                <div class='saveDWeather'>${trips[i].departure.temp} ${trips[i].departure.cloud}</div>
-                <div class='saveReturn'><strong>Return:</strong> ${trips[i].arrival.return}</div>
-                <div class='saveAWeather'>${trips[i].arrival.temp} ${trips[i].arrival.cloud}</div>
-                <div class='daysUntil'>${daysToTrip} Days Away!</div>`
+               `<div class='tripTo'>${trips[i].arrival.at}, ${trips[i].arrival.specify}</div>
+                <div class='tripFrom'>From: ${trips[i].departure.from}, ${trips[i].departure.specify}</div>
+                <div class='s_Info'><strong>Depart:</strong> ${trips[i].departure.day}</div>
+                <div class='s_Info'>${trips[i].departure.temp} ${trips[i].departure.cloud}</div>
+                <div class='s_Info'><strong>Return:</strong> ${trips[i].arrival.return}</div>
+                <div class='s_Info'>${trips[i].arrival.temp} ${trips[i].arrival.cloud}</div>
+                <div class='s_Info'>${daysToTrip} Days Away!</div>`
             } 
         })
     }) 
