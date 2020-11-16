@@ -52,20 +52,6 @@ body {
     grid-area: ftr;
 }
 
-/* ---- Section Containers ---- */
-
-.binding {
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-bottom: 2em;
-    background-color: white;
-    padding: 1em;
-    padding-top: 2em;
-    padding-bottom: 4em;
-    color: black;
-    border-radius: .5em;
-}
-
 /* ---- Header styles ---- */
 
 #section_header {
@@ -95,9 +81,19 @@ body {
     border: none;
     cursor: pointer;
     color: rgb(255, 138, 102);
-    font-size: 70px;
+    font-size: 70pt;
 }
 
 #scrollToTop:hover {
     transform: scale(1.08);
+}
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px) {
+    #scrollToTop {
+        font-size: 90pt;
+        right: 90px;
+        bottom: 90px;
+    }
 }

@@ -4,6 +4,18 @@
     scroll-margin-top: 100px;
 }
 
+.binding {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    background-color: white;
+    padding: 1em;
+    padding-top: 2em;
+    padding-bottom: 4em;
+    color: black;
+    border-radius: .5em;
+}
+
 #about_box {
     text-align: left;
     padding-top: 1.5em;
@@ -32,4 +44,33 @@
     font-size: 3.2em;
     color: rgb(253, 108, 40);
     padding-top: 1em;
+}
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px) {
+    .binding {
+        margin-top: 20em;
+        border-radius: .8em;
+    }
+
+    #section_header {
+        font-size: 1.5em;
+    }
+
+    #define_head {
+        font-size: 4em;
+    }
+
+    #define {
+        font-size: 2em;
+    }
+
+    #expand_about {
+        font-size: 2em;
+    }
+    
+    #quote {
+        font-size: 4em;
+    }
 }

@@ -12,3 +12,11 @@ footer {
 .social_icon:hover {
     transform: scale(1.09)
 }
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px) {
+    #tag {
+        font-size: 2.3em;
+    }
+}

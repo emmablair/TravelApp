@@ -32,3 +32,15 @@
     background-color:rgb(253, 108, 40);
     transform: scale(1.05)
 }
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px){
+    .nav_link_head {
+        font-size: 2em;
+    }
+
+    #nav_contain > a {
+        font-size: 2em;
+    }
+}

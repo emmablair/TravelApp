@@ -111,3 +111,30 @@ h2 {
         margin: 20em 5em 20em;
     }
 }
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px) {
+    #body {
+        margin-left: 2em;
+        margin-right: 2em;
+        padding: 1em;
+        border-radius: .8em;
+    }
+
+    h2 {
+        font-size: 3em;
+    }
+
+    input[type='text'] {
+        font-size: 30pt;
+    }
+
+    input[type='date'] {
+        font-size: 25pt;
+    }
+
+    input[type='submit'] {
+        font-size: 25pt;
+    }
+}

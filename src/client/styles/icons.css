@@ -29,3 +29,21 @@
     color: black;
     padding: .3em;
 }
+
+/* ---- Smart Phone ---- */
+
+@media only screen and (max-device-width: 400px) {
+    .fa-search {
+        /* search icon */
+        font-size: 25pt;
+    }
+
+    .plane-date {
+        /* depart/arrive plane */
+        font-size: 25pt;
+    }
+
+    .social_icon {
+        font-size: 5em;
+    }
+}

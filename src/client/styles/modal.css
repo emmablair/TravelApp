@@ -198,6 +198,70 @@
     }
 }
 
-@media only screen and (max-device-width: 400px) {
+/* ---- Smart Phone ---- */
 
+@media only screen and (max-device-width: 400px) {
+    #savedTrips {
+        margin-top: 15em;
+    }
+
+    /* modal */
+
+    #head_to {
+        font-size: 3em;
+    }
+    
+    #head_from {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2em;
+    }
+
+    #depart {
+        font-size: 1.6em;
+    }
+
+    #return {
+        font-size: 1.5em;
+    }
+
+    .modal-footer > .btn {
+        width: 100%;
+        height: 2.3em;
+        font-size: 2em;
+    }
+
+    /* before trips msg */
+
+    #noTrip {
+        font-size: 5em;
+    }
+
+    #label {
+        font-size: 2em;
+    }
+
+    /* Saved Trips */
+
+    .saveImg {
+        width: 40vw;
+        height: 30vw;
+        object-fit: cover;
+    }
+
+    .btn.delete {
+        height: 2.3em;
+        font-size: 2em;
+    }
+
+    .tripTo {
+        font-size: 2em;
+    }
+    
+    .tripFrom {
+        font-size: 1.7em;
+    }
+
+    .s_Info {
+        font-size: 1.7em;
+    }
 }
