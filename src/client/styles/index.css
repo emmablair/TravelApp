@@ -73,8 +73,8 @@ body {
 #scrollToTop {
     display: none;
     position: fixed;
-    right: 40px;
-    bottom: 40px;
+    right: 60px;
+    bottom: 60px;
     width: 70px;
     height: 70px;
     border-radius: 50%;
