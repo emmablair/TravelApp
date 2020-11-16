@@ -47,7 +47,7 @@ const formHandler = async(e) => {
     if(departInput === '' || arriveInput === '' || departDate === '' || returnDate === '') {
         alert('Please enter valid locations and dates.')
     }else{
-        /* if form fields aren't blank than give modal the data-target ID
+        /* if form fields aren't blank then give modal the data-target ID
         so that the model drops down after submit (BUT not if fields are empty) */
         const target = document.querySelector('.data-target');
         target.id = 'createTrip';
@@ -97,7 +97,7 @@ const tripUI = (tripInfo) => {
     // updated UI
     pic.setAttribute('src', `${tripInfo.arrival.pixabay}`)
     pic.setAttribute('alt', `Picture of ${tripInfo.arrival.at}.`)
-    // Trip Information
+    /* Trip Information */
     let headTo = document.querySelector('#head_to');
     let headFrom = document.querySelector('#head_from');
     let dayD = document.querySelector('#dayD');
@@ -119,8 +119,13 @@ const store = (tripInfo) => {
     let tripInfos;
     if(localStorage.getItem('tripInfos') === null) {
         tripInfos = [];
+    // } else if(localStorage.getItem('tripInfos') != null) {
+    //     tripInfos = JSON.parse(localStorage.getItem('tripInfos'))
     } else {
         tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+        // for (let i = 0; i < tripInfos.length; i++) {
+        //     storeSave(tripInfos[i])
+        //   }
     }
     tripInfos.push(tripInfo);
     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
@@ -159,9 +164,6 @@ save()
 
 const updateSavedTrip = (divs) => {
     // UpdateUI of saved trips with local storage data
-    // const saveCard = document.createElement('div');
-    // saveCard.classList.add('saveCard');
-    // divs.appendChild(saveCard);
     const saveImgBox = document.createElement('div');
     saveImgBox.classList.add('saveImgBox');
     divs.appendChild(saveImgBox);
@@ -266,3 +268,81 @@ const noTripMessage = () => {
         beforeTrip.style.display = ''
     }
 }
+
+/* ::::: LOAD STORAGE TRIPS ::::: */
+
+function loadStoredTrips () {
+    tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+    for (let i = 0; i < tripInfos.length; i++) {
+        storeSave(tripInfos[i])
+    }
+};
+
+/* ::: UPDATE CARD UI ::: */
+
+const updateStoreTrip = (divs, tripInfos) => {
+    // UpdateUI of saved trips with local storage data
+    const saveImgBox = document.createElement('div');
+    saveImgBox.classList.add('saveImgBox');
+    divs.appendChild(saveImgBox);
+    // basic CARD with image and button (NO INFO)
+        const daysToTrip = dateDifference(currentDate, tripInfos.departure.day)
+        saveImgBox.innerHTML = `
+            <img class="saveImg" src="${tripInfos.arrival.pixabay}" alt="Picture of ${tripInfos.arrival.at}, ${tripInfos.arrival.specify}">
+        `
+    clickStoreInfo(saveImgBox, tripInfos);
+}
+
+/* ::: CLICK CARD to view INFO ::: */
+
+const clickStoreInfo = (saveImgBox, tripInfos) => {
+    const trips = JSON.parse(localStorage.getItem('tripInfos'));
+    const saveInfo = document.createElement('div');
+    saveInfo.classList.add('saveInfo');
+    saveImgBox.appendChild(saveInfo);
+    saveImgBox.addEventListener('click', (e) => {
+        // if clicked THEN show all trip info on card
+        if(saveInfo.innerHTML != '') {
+            saveInfo.innerHTML = ''
+            saveInfo.style.padding = '0';
+        }else{
+            saveInfo.style.padding = '1em';
+                const daysToTrip = dateDifference(currentDate, tripInfos.departure.day)
+                saveInfo.innerHTML =
+                `<div class='tripTo'>${tripInfos.arrival.at}, ${tripInfos.arrival.specify}</div>
+                    <div class='tripFrom'>From: ${tripInfos.departure.from}, ${tripInfos.departure.specify}</div>
+                    <div class='s_Info'><strong>Depart:</strong> ${tripInfos.departure.day}</div>
+                    <div class='s_Info'>${tripInfos.departure.temp} ${tripInfos.departure.cloud}</div>
+                    <div class='s_Info'><strong>Return:</strong> ${tripInfos.arrival.return}</div>
+                    <div class='s_Info'>${tripInfos.arrival.temp} ${tripInfos.arrival.cloud}</div>
+                    <div class='s_Info'>${daysToTrip} Days Away!</div>`
+        }
+        
+    }) 
+}
+
+/* ::: DYMANICALLY create SAVE CARD ::: */
+
+const storeSave = (tripInfos) => {
+    // Dynamically create save card DIVs
+    let savedTrip = document.querySelector('#savedTrips');
+    let divs = document.createElement('div');
+    let buttons = document.createElement('button')
+    savedTrip.appendChild(divs)
+    divs.classList.add('saveCard')
+    const saves = document.querySelector('.trip');
+    // Update the Save Cards with INFO
+    updateStoreTrip(divs, tripInfos);
+    // creates NEW button each save
+    divs.appendChild(buttons);
+    buttons.classList.add('delete')
+    buttons.classList.add('btn')
+    buttons.id = 'saved'
+    buttons.innerHTML = 'Cancel Trip'
+    // Delete trip from view and storage
+    deleteTrip(tripInfos, buttons)
+    // remove 'no trips yet' message if there are trips
+    noTripMessage()
+};
+
+loadStoredTrips();
