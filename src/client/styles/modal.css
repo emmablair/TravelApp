@@ -168,3 +168,36 @@
     color: black;
     font-size: 1em;
 }
+
+/* ---- IPAD / TABLET ---- */
+
+@media only screen and (max-device-width: 800px) {
+    #savedTrips {
+        margin: 0 2em 20em;
+        scroll-margin-top: 200px;
+    }
+
+    .saveImg {
+        width: 30vw;
+        height: 20vw;
+        object-fit: cover;
+    }
+
+    .btn.delete {
+        width: 100%;
+        height: 3em;
+        font-size: 1.3em;
+    }
+
+    .tripTo {
+        font-size: 1.3em;
+    }
+    
+    .tripFrom {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (max-device-width: 400px) {
+
+}

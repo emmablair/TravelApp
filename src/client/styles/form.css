@@ -103,3 +103,11 @@ h2 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+/* ---- IPAD / TABLET ---- */
+
+@media only screen and (max-device-width: 800px) {
+    #body {
+        margin: 20em 5em 20em;
+    }
+}
