@@ -107,9 +107,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    scroll-margin-top: 100px;
+    scroll-margin-top: 350px;
     margin: 2em;
-    margin-bottom: 13em;
+    margin-bottom: 21em;
+    margin-top: 11em;
 }
 
 .btn.hide {
