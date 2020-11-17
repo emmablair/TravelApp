@@ -20,8 +20,8 @@ document.querySelector('#returnDate').value = currentDate; //.valueAsDate withou
 
 /* ::: date diffence for weather Forcast ::: */
 const dateDifference = (date1, date2) => {
-    dt1 = new Date(date1);
-    dt2 = new Date(date2);
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
 }
 
@@ -171,7 +171,6 @@ const updateSavedTrip = (divs) => {
     // basic CARD with image and button (NO INFO)
     trips.forEach( () => {
         for (let i = 0; i < trips.length; i++){
-        const daysToTrip = dateDifference(currentDate, trips[i].departure.day)
         saveImgBox.innerHTML = `
             <img class="saveImg" src="${trips[i].arrival.pixabay}" alt="Picture of ${trips[i].arrival.at}, ${trips[i].arrival.specify}">
         `
@@ -241,6 +240,8 @@ const addSave = (tripInfos) => {
 const deleteTrip = (tripInfos, buttons) => {
     buttons.addEventListener('click', (e) => {
         console.log('Deleting...')
+        /* :::ISSUE::: DELETE LOCALSTORAGE */
+        /* doesn't delete correct localStorage item */
         let tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
         tripInfos.forEach((trip) => {
             if(e.target.id === 'saved') {
@@ -272,9 +273,16 @@ const noTripMessage = () => {
 /* ::::: LOAD STORAGE TRIPS ::::: */
 
 function loadStoredTrips () {
-    tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-    for (let i = 0; i < tripInfos.length; i++) {
-        storeSave(tripInfos[i])
+    let tripInfos;
+    if(localStorage.getItem('tripInfos') === null) {
+        tripInfos = [];
+    } else {
+        tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
+        if(tripInfos.length > 0) {
+            for (let i = 0; i < tripInfos.length; i++) {
+                storeSave(tripInfos[i])
+            }
+        }
     }
 };
 
@@ -346,3 +354,5 @@ const storeSave = (tripInfos) => {
 };
 
 loadStoredTrips();
+
+export { formHandler };
