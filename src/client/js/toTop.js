@@ -16,3 +16,5 @@ function backToTop() {
 }
 
 backToTop();
+
+export { backToTop };
