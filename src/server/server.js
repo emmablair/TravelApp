@@ -43,11 +43,21 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-app.use(express.static('src/client')); //CHANGE to DIST once webpack is added!!
+app.use(express.static('dist')); //CHANGE to DIST once webpack is added!!
+
+// HerokuApp hosting >>
+app.use(function (req, res, next){
+    if (req.headers['x-forwarded-proto'] === 'https') {
+      res.redirect('http://' + req.hostname + req.url);
+    } else {
+      next();
+    }
+});
 
 app.get('/', (req, res) => {
     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
 });
 
 app.listen(8081, () => {
