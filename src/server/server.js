@@ -74,7 +74,7 @@ function sendData (request, response) {
 
 /* ::: DEPART POST ::: */
 const geoURL = `http://api.geonames.org/searchJSON?q=`;
-const geoKey = process.env.GEO_KEY;
+const geoKey = GEO_KEY;
 
 const geoNameDepart = async (baseURL, key, departInput) => {
     let urlSettings = `&maxRows=1&lang=en`;
@@ -105,7 +105,7 @@ const geoNameArrive = async (baseURL, key, arriveInput) => {
 };
 
 const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
-const weatherKey = process.env.WEATHER_KEY;
+const weatherKey = WEATHER_KEY;
 
 const weatherDepart = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
@@ -136,7 +136,7 @@ const weatherArrive = async (baseURL, key) => {
 };
 
 const pixURL = `https://pixabay.com/api/?`;
-const pixKey = process.env.PIXABAY_KEY;
+const pixKey = PIXABAY_KEY;
 
 const pixArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&per_page=3&category=places&image_type=photo`;
@@ -157,27 +157,6 @@ app.post('/trip', async(req, res) => {
 
     const departDate = req.body.dateD;
     const returnDate = req.body.dateA;
-    
-
-    // // /* ::: Current date in date input field ::: */
-    // Date.prototype.toDateInputValue = (function() {
-    //     // allow correct timezone
-    //     var local = new Date(this);
-    //     local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    //     return local.toJSON().slice(0,10);
-    // });
-    // /* ::: apply current date ::: */
-    // const currentDate = new Date().toDateInputValue();
-    // departDate = currentDate; //.valueAsDate without timezone also works
-    // returnDate = currentDate; //.valueAsDate without timezone also works
-
-    // /* ::: date diffence for weather Forcast ::: */
-    // const dateDifference = (date1, date2) => {
-    //     dt1 = new Date(date1);
-    //     dt2 = new Date(date2);
-    //     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
-    // }
-
 
     const departInput = req.body.depart;
     const arriveInput = req.body.arrive;
@@ -185,8 +164,6 @@ app.post('/trip', async(req, res) => {
     const departForcast = req.body.forcastD;
     const arriveForcast = req.body.forcastA;
     
-    // projectData.departure.from = departGeo.geonames[0].toponymName;
-    // projectData.arrival.at = arriveGeo.geonames[0].toponymName;
     projectData.departure.day = departDate;
     projectData.arrival.return = returnDate;
 
