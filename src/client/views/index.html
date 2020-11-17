@@ -14,13 +14,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet"> 
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&display=swap" rel="stylesheet"> 
         <!-- Styles -->
-        <link rel="stylesheet" href="styles/modal.css">
+        <!-- <link rel="stylesheet" href="styles/modal.css">
         <link rel="stylesheet" href="styles/icons.css">
         <link rel="stylesheet" href="styles/form.css">
         <link rel="stylesheet" href="styles/index.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/about.css">
-        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/footer.css"> -->
     </head>
     <body>
             <nav id='nav'>
@@ -34,7 +34,7 @@
             </nav>
             <section id='body'>
                 <div id='form'>
-                    <form onsubmit="return formHandler(event)">
+                    <form onsubmit="return Client.formHandler(event)">
                         <div id='place'>
                             <div><h2>Indulge your Wanderlust.</h2></div>
                             <div class='inputContainer'>
@@ -58,8 +58,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div id='submitForm'>
-                            <input id='submit' type='submit' name='' value='Start the Adventure' onSubmit="return formHandler(event)" onClick="return formHandler(event)" data-toggle="modal" data-target="#createTrip">
+                        <div id='submitForm' onsubmit="return Client.formHandler(event)">
+                            <input id='submit' type='submit' name='' value='Start the Adventure' onSubmit="return Client.formHandler(event)" onClick="return Client.formHandler(event)" data-toggle="modal" data-target="#createTrip">
                         </div>
                     </form>
                 </div>
@@ -102,9 +102,7 @@
                     </div>
                 </div>
             </section>
-            <button>
-                <i id='scrollToTop' class="fas fa-arrow-circle-up"></i>
-            </button>
+            <i id='scrollToTop' class="fas fa-arrow-circle-up"></i>
             <footer id='footer'>
                 <div class="social">
                     <a href='https://github.com/emmablair'><i class="fab fa-github social_icon"></i></a>
@@ -148,7 +146,14 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <!-- JS Scripts -->
-        <script src='../js/formHandler.js'></script>
-        <script src='../js/toTop.js'></script>
+        <!-- Service Workers -->
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
