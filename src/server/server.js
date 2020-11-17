@@ -45,6 +45,13 @@ app.use(cors());
 
 app.use(express.static('dist')); //CHANGE to DIST once webpack is added!!
 
+// Spin up the server
+const port = process.env.PORT || 8081;
+app.listen(port, () => {
+    // Callback to debug
+    console.log('Hello! Travel App is listening from port 8081!');
+});
+
 // HerokuApp hosting >>
 app.use(function (req, res, next){
     if (req.headers['x-forwarded-proto'] === 'https') {
@@ -58,10 +65,6 @@ app.get('/', (req, res) => {
     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
     res.sendFile('dist/index.html')
     // res.sendFile(path.resolve('src/client/views/index.html'))
-});
-
-app.listen(8081, () => {
-    console.log('Hello! Travel App is listening from port 8081!');
 });
 
 app.get('/all', sendData);
