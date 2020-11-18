@@ -2,6 +2,9 @@
   "name": "travelapp",
   "version": "1.0.0",
   "description": "capstone project",
+  "engines": {
+    "node": "12.18.3"
+  },
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.19.0",
