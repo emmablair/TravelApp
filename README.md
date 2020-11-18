@@ -34,7 +34,7 @@ Wanderlust Planner is a travel app for the [Udacity's](https://www.udacity.com/)
 ## Development Mode
 
 1. `npm run build-dev`
-2. open `localhost:8081` in browser.
+2. open `localhost:8080` in browser.
 
 ## Production Mode
 
