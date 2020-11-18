@@ -54,8 +54,8 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
-    // res.sendFile('./dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+    res.sendFile('./dist/index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
 });
 
 app.get('/all', sendData);
