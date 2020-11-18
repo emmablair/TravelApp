@@ -114,33 +114,83 @@ h2 {
 
 @media only screen and (max-device-width: 800px) {
     #body {
-        margin: 20em 5em 20em;
+        margin: 20em 5em 25em;
     }
+
+    input[type='text'] {
+        font-size: 25pt;
+    }
+
+    #arriveInput,
+    #departInput {
+    padding: .7em;
+    }
+
+    input[type='date'] {
+        font-size: 20pt;
+    }
+
+    .dateContainer {
+        margin: .5em;
+        margin-bottom: 1em;
+    }
+
+    input[type='submit'] {
+        font-size: 20pt;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+
+    #submitForm {
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+       
 }
 
 /* ---- Smart Phone ---- */
 
-@media only screen and (max-device-width: 400px) {
+@media only screen and (max-device-width: 450px) {
     #body {
+        margin-top: 24em;
         margin-left: 2em;
         margin-right: 2em;
         padding: 1em;
         border-radius: .8em;
     }
 
-    h2 {
-        font-size: 3em;
+    #form_head {
+        font-size: 1.5em;
+        padding-bottom: .5em;
     }
 
     input[type='text'] {
-        font-size: 30pt;
+        font-size: 35pt;
+    }
+
+    #arriveInput,
+    #departInput {
+    padding: .5em;
     }
 
     input[type='date'] {
-        font-size: 25pt;
+        font-size: 35pt;
+    }
+
+    .dateContainer {
+        margin: 1em;
+        margin-bottom: 2.5em;
+        margin-top: 2em;
     }
 
     input[type='submit'] {
         font-size: 25pt;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
+
+    #submitForm {
+        padding-top: .5em;
+        padding-bottom: .5em;
     }
 }

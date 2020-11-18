@@ -184,7 +184,7 @@
 @media only screen and (max-device-width: 800px) {
     #savedTrips {
         margin: 0 2em 20em;
-        scroll-margin-top: 200px;
+        scroll-margin-top: 600px;
     }
 
     .saveImg {
@@ -210,9 +210,10 @@
 
 /* ---- Smart Phone ---- */
 
-@media only screen and (max-device-width: 400px) {
+@media only screen and (max-device-width: 450px) {
     #savedTrips {
         margin-top: 15em;
+        scroll-margin-top: 700px;
     }
 
     /* modal */
