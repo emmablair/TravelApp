@@ -54,7 +54,7 @@
 
 #head_to {
     font-family: 'Fredericka the Great', cursive;
-    color:rgb(253, 108, 40);
+    color:#ff490e;;
     font-size: 2em;
 }
 
@@ -75,6 +75,7 @@
 
 .modal-footer > .btn {
     grid-area: btn;
+    width: 100%;
 }
 
 /* ---- ALL buttons ---- */
@@ -86,7 +87,7 @@
 }
 
 .btn:hover {
-    background-color:rgb(253, 108, 40);
+    background-color:#ff490e;;
     border: 0;
 }
 
@@ -100,7 +101,11 @@
     font-family: 'Montserrat', sans-serif;
     color: #ff490e;
     font-weight: 800;
-    font-size: 3em;
+    font-size: 4em;
+}
+
+#label {
+    font-size: 1.5em;
 }
 
 #savedTrips {
@@ -123,8 +128,8 @@
 }
 
 .saveImg {
-    width: 15vw;
-    height: 10vw;
+    width: 20vw;
+    height: 15vw;
     object-fit: cover;
 }
 
@@ -155,14 +160,14 @@
 
 .tripTo {
     font-family: 'Fredericka the Great', cursive;
-    color: rgb(253, 108, 40);
-    font-size: 1.1em;
+    color: #ff490e;;
+    font-size: 1.5em;
 }
 
 .tripFrom {
     font-family: 'Montserrat', sans-serif;
     color: black;
-    font-size: .7em;
+    font-size: 1em;
 }
 
 .s_Info {

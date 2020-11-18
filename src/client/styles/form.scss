@@ -34,7 +34,13 @@ input[type='text'] {
     padding-top: .5em;
     padding-bottom: .5em;
     border: 0;
+}
+
+#arriveInput,
+#departInput {
     width: 90%;
+    border: none;
+    padding: .5em;
 }
 
 #date {
@@ -92,7 +98,7 @@ input[type='submit'] {
 }
 
 input[type='submit']:hover {
-    background-color:rgb(253, 108, 40);
+    background-color:#ff490e;
 }
 
 h2 {
