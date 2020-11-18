@@ -54,8 +54,17 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
-    res.sendFile('index.html')
+    res.sendFile('dist/index.html')
     // res.sendFile(path.resolve('src/client/views/index.html'))
+});
+
+// HerokuApp hosting >>
+app.use(function (req, res, next){
+    if (req.headers['x-forwarded-proto'] === 'https') {
+      res.redirect('http://' + req.hostname + req.url);
+    } else {
+      next();
+    }
 });
 
 app.get('/all', sendData);
