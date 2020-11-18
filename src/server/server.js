@@ -52,11 +52,11 @@ app.listen(port, () => {
     console.log('Hello! Travel App is listening from port 8081!');
 });
 
-// app.get('/', (req, res) => {
-//     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
-//     res.sendFile('dist/index.html')
-//     // res.sendFile(path.resolve('src/client/views/index.html'))
-// });
+app.get('/', (req, res) => {
+    // CHANGE TO res.sendFile('dist/index.html') when webpack is added
+    res.sendFile('index.html')
+    // res.sendFile(path.resolve('src/client/views/index.html'))
+});
 
 app.get('/all', sendData);
 function sendData (request, response) {
