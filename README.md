@@ -25,7 +25,7 @@ Wanderlust Planner is a travel app for the [Udacity's](https://www.udacity.com/)
     2. create account with Weatherbit
     3. create account with Pixabay
 4. store keys in a `.env` file
-5. Key names should match the server.js key names
+5. `.env` key names should match the server.js key names
     1. `GEO_KEY = YOUR_KEY` for geonames API
     2. `WEATHER_KEY = YOUR_KEY` for weatherbit API
     3. `PIXABAY_KEY = YOUR_KEY` for pixababy API
