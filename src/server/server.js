@@ -52,15 +52,6 @@ app.listen(port, () => {
     console.log('Hello! Travel App is listening from port 8081!');
 });
 
-// HerokuApp hosting >>
-app.use(function (req, res, next){
-    if (req.headers['x-forwarded-proto'] === 'https') {
-      res.redirect('http://' + req.hostname + req.url);
-    } else {
-      next();
-    }
-});
-
 app.get('/', (req, res) => {
     // CHANGE TO res.sendFile('dist/index.html') when webpack is added
     res.sendFile('dist/index.html')
