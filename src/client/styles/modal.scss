@@ -78,6 +78,15 @@
     width: 100%;
 }
 
+.btn.hide {
+    background-color: rgb(126, 126, 126);
+    border: none;
+}
+
+.btn.hide:hover {
+    background-color: rgb(77, 77, 77);
+}
+
 /* ---- ALL buttons ---- */
 
 .btn {
@@ -116,11 +125,6 @@
     margin: 2em;
     margin-bottom: 21em;
     margin-top: 11em;
-}
-
-.btn.hide {
-    background-color: rgb(126, 126, 126);
-    border-color: rgb(126, 126, 126);
 }
 
 .btn.delete {
