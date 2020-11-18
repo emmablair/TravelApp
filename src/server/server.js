@@ -72,13 +72,9 @@ function sendData (request, response) {
   response.send(projectData);
 };
 
-const GEO_KEY = process.env.GEO_KEY;
-const WEATHER_KEY = process.env.WEATHER_KEY;
-const PIXABAY_KEY = process.env.PIXABAY_KEY;
-
 /* ::: DEPART POST ::: */
 const geoURL = `http://api.geonames.org/searchJSON?q=`;
-const geoKey = GEO_KEY;
+const geoKey = process.env.GEO_KEY;
 
 const geoNameDepart = async (baseURL, key, departInput) => {
     let urlSettings = `&maxRows=1&lang=en`;
@@ -109,7 +105,7 @@ const geoNameArrive = async (baseURL, key, arriveInput) => {
 };
 
 const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`;
-const weatherKey = WEATHER_KEY;
+const weatherKey = process.env.WEATHER_KEY;
 
 const weatherDepart = async (baseURL, key) => {
     let urlSettings = `&lang=en&units=I&days=16`;
@@ -140,7 +136,7 @@ const weatherArrive = async (baseURL, key) => {
 };
 
 const pixURL = `https://pixabay.com/api/?`;
-const pixKey = PIXABAY_KEY;
+const pixKey = process.env.PIXABAY_KEY;
 
 const pixArrive = async (baseURL, key) => {
     let urlSettings = `&lang=en&per_page=3&category=places&image_type=photo`;
