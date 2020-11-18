@@ -106,13 +106,14 @@ h2 {
     font-size: 2.5em;
     font-weight: 700;
     background: -webkit-linear-gradient(left, rgb(255, 138, 102) , rgb(250, 142, 41) , rgb(255, 68, 12));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 /* ---- IPAD / TABLET ---- */
 
-@media only screen and (max-device-width: 800px) {
+@media only screen and (max-device-width: 1050px) {
     #body {
         margin: 20em 5em 25em;
     }
@@ -123,7 +124,7 @@ h2 {
 
     #arriveInput,
     #departInput {
-    padding: .7em;
+    padding: .5em;
     }
 
     input[type='date'] {
@@ -171,6 +172,7 @@ h2 {
     #arriveInput,
     #departInput {
     padding: .5em;
+    font-size: 35pt;
     }
 
     input[type='date'] {
