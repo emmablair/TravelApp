@@ -119,13 +119,8 @@ const store = (tripInfo) => {
     let tripInfos;
     if(localStorage.getItem('tripInfos') === null) {
         tripInfos = [];
-    // } else if(localStorage.getItem('tripInfos') != null) {
-    //     tripInfos = JSON.parse(localStorage.getItem('tripInfos'))
     } else {
         tripInfos = JSON.parse(localStorage.getItem('tripInfos'));
-        // for (let i = 0; i < tripInfos.length; i++) {
-        //     storeSave(tripInfos[i])
-        //   }
     }
     tripInfos.push(tripInfo);
     localStorage.setItem('tripInfos', JSON.stringify(tripInfos));
@@ -138,8 +133,6 @@ const store = (tripInfo) => {
 const save = async() => {
     document.querySelector('#save').addEventListener('click', async() => {
         console.log('CLICK')
-        // hide modal from display
-        // modalArea.style.display = 'none';
         const trip = await fetch('/all',  {
             method: 'GET',
             credentials: 'same-origin',
